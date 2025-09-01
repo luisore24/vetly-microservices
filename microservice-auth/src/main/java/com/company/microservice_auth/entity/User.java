@@ -2,20 +2,19 @@ package com.company.microservice_auth.entity;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class User {
 
     @Id
@@ -50,7 +49,7 @@ public class User {
     @JoinColumn(name = "status_id", nullable = false, foreignKey = @ForeignKey(name = "fk_user_status"))
     private Status status;
 
-    @Column(name = "is_enable", nullable = false)
+    @Column(name = "is_enabled", nullable = false)
     private boolean isEnabled;
 
     @Column(name = "account_no_expired", nullable = false)
@@ -68,16 +67,29 @@ public class User {
     @Column(name = "last_login_ip", nullable = false)
     private String lastLoginIp;
 
-    @Column(name = "create_at", nullable = false)
-    private LocalDateTime createAt;
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
 
-    @Column(name = "create_by", nullable = false)
-    private String createBy;
+    @Column(name = "created_by", nullable = false)
+    private String createdBy;
 
-    @Column(name = "update_at", nullable = false)
-    private LocalDateTime updateAt;
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
 
-    @Column(name = "update_by", nullable = false)
-    private String updateBy;
+    @Column(name = "updated_by", nullable = false)
+    private String updatedBy;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User other = (User) o;
+        return id != null && id.equals(other.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
 
 }

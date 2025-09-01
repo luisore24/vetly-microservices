@@ -3,10 +3,12 @@
 INSERT INTO status (id,description, comment, created_at, created_by, updated_at, updated_by)
 VALUES (1, 'ACTIVO', 'ACTIVO', NOW(), 'SYSTEM', NOW(), 'SYSTEM');
 
+
+--INSERT PARA TABLA users | clave encriptada: admin
 INSERT INTO users (id, username,password,name,lastname,email,phone,address,status_id,is_enabled,account_no_expired,account_no_locked,credential_no_expired,last_login,last_login_ip,created_at,created_by,
   updated_at,updated_by
 ) VALUES (
-  1, 'admin','$2a$10$eImiTXuWVxfM37uY4JANjQ==','Juan','Pérez','admin@example.com','123456789','Calle Falsa 123',1,TRUE,TRUE,TRUE,TRUE,NOW(),'192.168.1.100',NOW(),'SYSTEM',NOW(),'SYSTEM');
+  1, 'admin','$2a$10$s6DtAt761jw2Ws97r4EOu..WNwpxDcJEFRK9vgeLwBVKpsGtYS1pK','Juan','Pérez','admin@example.com','123456789','Calle Falsa 123',1,TRUE,TRUE,TRUE,TRUE,NOW(),'192.168.1.100',NOW(),'SYSTEM',NOW(),'SYSTEM');
 
 
 --INSERT PARA TABLA roles
@@ -32,7 +34,7 @@ VALUES
 
 
 --INSERT PARA TABLA menus
-INSERT INTO menus (id, description, status_id, icone, route, created_at, created_by, updated_at, updated_by)
+INSERT INTO menus (id, description, status_id, icon, route, created_at, created_by, updated_at, updated_by)
 VALUES
 (1, 'Dashboard', 1, 'dashboard-icon', '/dashboard', NOW(), 'SYSTEM', NOW(), 'SYSTEM'),
 (2, 'Settings', 1, 'settings-icon', '/settings', NOW(), 'SYSTEM', NOW(), 'SYSTEM');

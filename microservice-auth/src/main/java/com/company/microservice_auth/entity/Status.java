@@ -26,15 +26,15 @@ public class Status {
     @Column(name = "comment")
     private String comment;
 
-    @Column(name = "create_at", nullable = false)
-    private LocalDateTime createAt;
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
 
-    @Column(name = "create_by", nullable = false)
-    private String createBy;
+    @Column(name = "created_by", nullable = false)
+    private String createdBy;
 
-    @Column(name = "update_at", nullable = false)
-    private LocalDateTime updateAt;
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
 
-    @Column(name = "update_by", nullable = false)
-    private String updateBy;
+    @Column(name = "updated_by", nullable = false)
+    private String updatedBy;
 }

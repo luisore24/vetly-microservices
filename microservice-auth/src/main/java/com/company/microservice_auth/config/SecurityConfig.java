@@ -1,11 +1,13 @@
 package com.company.microservice_auth.config;
 
 import com.company.microservice_auth.service.ServiceImpl.CustomUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -21,6 +23,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    @Autowired
+    private CustomUserDetailsService customUserDetailsService;
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -30,7 +35,9 @@ public class SecurityConfig {
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(https -> {
-                    https.requestMatchers(HttpMethod.GET, "/v1/auth/login").permitAll();
+                    https.requestMatchers(HttpMethod.GET, "/v1/auth/login").authenticated();
+                    //https.requestMatchers(HttpMethod.GET, "/v1/auth/login").hasRole("ADMIN");
+                    https.anyRequest().denyAll();
                 })
                 .build();
     }
@@ -54,5 +61,9 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+
+//    public static void main(String[] args) {
+//        System.out.println(new BCryptPasswordEncoder().encode("admin"));
+//    }
 
 }

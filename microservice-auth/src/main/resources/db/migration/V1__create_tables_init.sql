@@ -58,7 +58,7 @@ CREATE TABLE "menus" (
   "description" varchar(20) UNIQUE NOT NULL,
   "comment" varchar(100),
   "status_id" integer DEFAULT '1',
-  "icone" varchar(30),
+  "icon" varchar(30),
   "route" varchar(200) NOT NULL,
   "created_at" timestamp NOT NULL,
   "created_by" varchar(50) NOT NULL,
