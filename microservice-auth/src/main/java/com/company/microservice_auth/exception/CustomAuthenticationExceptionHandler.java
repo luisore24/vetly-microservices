@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
@@ -36,14 +37,19 @@ public class CustomAuthenticationExceptionHandler implements AuthenticationFailu
                 error = messageSource.getMessage("error.badcredential.error", null, Locale.getDefault());
             }
             case LockedException lockedException -> {
-                message = messageSource.getMessage("error.locked.message", null, Locale.getDefault());
-                statusCode = messageSource.getMessage("error.locked.statuscode", null, Locale.getDefault());
+                message = messageSource.getMessage("error.accountlocked.message", null, Locale.getDefault());
+                statusCode = messageSource.getMessage("error.accountlocked.statuscode", null, Locale.getDefault());
                 error = messageSource.getMessage("error.locked.error", null, Locale.getDefault());
             }
             case AccountExpiredException accountExpiredException ->{
                 message = messageSource.getMessage("error.accountexpired.message", null, Locale.getDefault());
                 statusCode = messageSource.getMessage("error.accountexpired.statuscode", null, Locale.getDefault());
                 error = messageSource.getMessage("error.accountexpired.error", null, Locale.getDefault());
+            }
+            case CredentialsExpiredException credentialsExpiredException ->{
+                message = messageSource.getMessage("error.credentialexpired.message", null, Locale.getDefault());
+                statusCode = messageSource.getMessage("error.credentialexpired.statuscode", null, Locale.getDefault());
+                error = messageSource.getMessage("error.credentialexpired.error", null, Locale.getDefault());
             }
             case DisabledException disabledException -> {
                 message = messageSource.getMessage("error.accountdisable.message", null, Locale.getDefault());
