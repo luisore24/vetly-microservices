@@ -1,10 +1,9 @@
-package com.company.microservice_auth.service.ServiceImpl;
+package com.company.microservice_auth.service.ServiceImpl.auth;
 
 
 import com.company.microservice_auth.entity.User;
 import com.company.microservice_auth.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.hibernate.event.spi.SaveOrUpdateEvent;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -24,29 +22,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        System.out.println("begin validation");
-
-//        try {
-//            Optional<User> userEntity = userRepository.findByUsername(username);
-//
-//            if(userEntity.isEmpty()) {
-//                System.out.println("User not found: " + username);
-//            }
-//            if(userEntity.isPresent()){
-//                System.out.println("Primera validación");
-//                System.out.println(userEntity.toString());
-//            }
-//        }
-//        catch (Exception e){
-//            System.out.println("Excepción durante loadUserByUsername: " + e.getMessage());
-//            e.printStackTrace();
-//            throw e;
-//        }
-
-        try {
             User userFound = userRepository.findByUsernameWithRolesPermissionsMenus(username)
                     .orElseThrow(() -> new UsernameNotFoundException("User: "+username+" not exist!. Try with an user valid."));
-
 
             List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
 
@@ -66,12 +43,6 @@ public class CustomUserDetailsService implements UserDetailsService {
                     userFound.isCredentialNoExpired(),
                     userFound.isAccountNoLocked(),
                     authorityList);
-        }
-        catch (Exception e){
-            System.out.println("Excepción durante loadUserByUsername with authorities: " + e.getMessage());
-            e.printStackTrace();
-            throw e;
-        }
 
     }
 }
