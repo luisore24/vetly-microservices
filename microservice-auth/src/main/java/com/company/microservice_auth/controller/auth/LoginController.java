@@ -21,7 +21,7 @@ public class LoginController {
         return "Get Login";
     }
 
-    @PostMapping()
+    @GetMapping("validate")
     public String loginPost(){
         return "Login Successfull";
     }

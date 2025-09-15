@@ -66,7 +66,7 @@ public class JwtUtil {
             return decodedJWT;
 
         } catch (JWTVerificationException exception) {
-            throw new JWTVerificationException("Invalid token: " + exception.getMessage(), exception);
+            throw new JWTVerificationException("Invalid token: " + exception.getMessage());
         }
     }
 

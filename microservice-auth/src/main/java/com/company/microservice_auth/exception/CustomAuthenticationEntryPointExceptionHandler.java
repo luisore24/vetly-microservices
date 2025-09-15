@@ -1,5 +1,6 @@
 package com.company.microservice_auth.exception;
 
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -75,7 +76,7 @@ public class CustomAuthenticationEntryPointExceptionHandler implements Authentic
 
     private String responseError(String message, String statusCode, String error, LocalDateTime time, String path) {
         return String.format(
-                "{\"Message\": %s, \"StatusCode:\" %s, \"Error:\" %s, \"timestamp:\" %s, \"Path:\" \"%s\"}",
+                "{\"Message:\" %s, \"StatusCode:\" %s, \"Error:\" %s, \"timestamp:\" %s, \"Path:\" \"%s\"}",
                 message, statusCode, error, time, path);
     }
 

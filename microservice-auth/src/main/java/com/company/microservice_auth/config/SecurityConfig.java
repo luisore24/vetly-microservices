@@ -43,10 +43,11 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(https -> {
                     https.requestMatchers(HttpMethod.POST, "/v1/auth/login").permitAll();
+                    https.requestMatchers("/v1/auth/validate").authenticated();
                     //https.requestMatchers(HttpMethod.GET, "/v1/auth/login").hasRole("ADMIN");
                     https.anyRequest().denyAll();
                 })
-                .addFilterBefore(new JwtTokenValidator(jwtUtil), BasicAuthenticationFilter.class)
+                .addFilterBefore(new JwtTokenValidator(jwtUtil, customAuthenticationEntryPointExceptionHandler), BasicAuthenticationFilter.class)
                 .exceptionHandling(
                         exception -> {
                             exception.authenticationEntryPoint(customAuthenticationEntryPointExceptionHandler);
