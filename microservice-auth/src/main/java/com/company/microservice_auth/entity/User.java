@@ -79,6 +79,9 @@ public class User {
     @Column(name = "updated_by", nullable = false)
     private String updatedBy;
 
+    @Column(name = "is_deleted")
+    private boolean isDeleted;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

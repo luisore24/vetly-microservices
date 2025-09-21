@@ -22,7 +22,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-            User userFound = userRepository.findByUsernameWithRolesPermissionsMenus(username)
+//        User userFound = userRepository.findByUsernameWithRolesPermissionsMenus(username)
+        User userFound = userRepository.findByUsernameWithRolesPermissions(username)
                     .orElseThrow(() -> new UsernameNotFoundException("User: "+username+" not exist!. Try with an user valid."));
 
             List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
