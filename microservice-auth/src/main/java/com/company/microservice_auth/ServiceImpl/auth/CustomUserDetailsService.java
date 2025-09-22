@@ -1,8 +1,8 @@
-package com.company.microservice_auth.service.ServiceImpl.auth;
+package com.company.microservice_auth.ServiceImpl.auth;
 
 
 import com.company.microservice_auth.entity.User;
-import com.company.microservice_auth.repository.UserRepository;
+import com.company.microservice_auth.repository.auth.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -35,7 +35,6 @@ public class CustomUserDetailsService implements UserDetailsService {
                     .flatMap(userRole -> userRole.getRole().getRolePermissions().stream())
                     .forEach(rolePermission -> authorityList.add(new SimpleGrantedAuthority(rolePermission.getPermission().getDescription())));
 
-            System.out.println(userFound.toString());
             return new org.springframework.security.core.userdetails.User(
                     userFound.getUsername(),
                     userFound.getPassword(),

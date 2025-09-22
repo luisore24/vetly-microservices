@@ -3,6 +3,7 @@ package com.company.microservice_auth.controller.auth;
 import com.company.microservice_auth.dto.auth.LoginRequest;
 import com.company.microservice_auth.dto.auth.LoginResponse;
 import com.company.microservice_auth.service.auth.LoginService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +28,9 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest){
+    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest, HttpServletRequest httpServletRequest){
 
-        LoginResponse response = loginService.loginAuthenticate(loginRequest);
+        LoginResponse response = loginService.loginAuthenticate(loginRequest, httpServletRequest);
 
         if(!response.getStatusCode().equals("200")){
             return new ResponseEntity<LoginResponse>(response, HttpStatusCode.valueOf(403));

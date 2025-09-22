@@ -1,6 +1,8 @@
 package com.company.microservice_auth.exception;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.company.microservice_auth.dto.auth.AuditLoginRequestDTO;
+import com.company.microservice_auth.service.auth.AuditLoginService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -12,8 +14,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Locale;
 
 @Component
@@ -21,6 +25,9 @@ public class CustomAuthenticationEntryPointExceptionHandler implements Authentic
 
     @Autowired
     private MessageSource messageSource;
+
+    @Autowired
+    private AuditLoginService auditLoginService;
 
 
 
@@ -66,11 +73,21 @@ public class CustomAuthenticationEntryPointExceptionHandler implements Authentic
 
         responseErrorJson = responseError(message, statusCode, error, LocalDateTime.now(), request.getRequestURI());
 
-        System.out.println(responseErrorJson);
-
         response.setContentType("application/json");
         response.setStatus(Integer.parseInt(statusCode));
         response.getWriter().write(responseErrorJson);
+
+//        AuditLoginRequestDTO auditLoginRequestDTO = AuditLoginRequestDTO.builder()
+//                .loginIp((request.getHeader("X-Forwarded-For") != null && !request.getHeader("X-Forwarded-For").isEmpty()) ? request.getRemoteAddr() : "unknown")
+//                .createdAt(LocalDateTime.now())
+//                .isSuccessful(false)
+//                .username(request. != null ? request.getRemoteUser() : "unknown")
+//                .userAgent(request.getHeader("User-Agent"))
+//                .build();
+
+//        System.out.println(auditLoginRequestDTO.toString());
+
+        //auditLoginService.register(auditLoginRequestDTO);
 
     }
 

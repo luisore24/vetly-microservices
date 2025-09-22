@@ -2,7 +2,7 @@ package com.company.microservice_auth.config;
 
 import com.company.microservice_auth.config.filter.JwtTokenValidator;
 import com.company.microservice_auth.exception.CustomAuthenticationEntryPointExceptionHandler;
-import com.company.microservice_auth.service.ServiceImpl.auth.CustomUserDetailsService;
+import com.company.microservice_auth.ServiceImpl.auth.CustomUserDetailsService;
 import com.company.microservice_auth.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
