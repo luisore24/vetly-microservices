@@ -1,37 +1,37 @@
 package com.company.microservice_auth.dto.user;
 
-import com.company.microservice_auth.entity.Status;
-import com.company.microservice_auth.entity.UserRole;
+import com.company.microservice_auth.dto.status.StatusDTO;
+
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.Set;
 
-@Getter
 @Setter
+@Getter
+@ToString
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRequestDTO {
+public class UserUpdateRequestDTO {
 
+    private Long id;
+    
     private String username;
 
-    private String password;
-
-    private Set<UserRole> roles;
+    private Set<UserRoleDTO> rolesDTO;
 
     private String name;
 
     private String lastname;
 
     private String email;
-
+    
     private String phone;
 
     private String address;
 
-    private Status status;
-
+    private StatusDTO status;
+    
     private Boolean isEnabled;
 
     private Boolean accountNoExpired;
@@ -40,14 +40,5 @@ public class UserRequestDTO {
 
     private Boolean credentialNoExpired;
 
-    private LocalDateTime createdAt;
-
-    private String createdBy;
-
-    private LocalDateTime updatedAt;
-
-    private String updatedBy;
-
-    private Boolean isDeleted;
     
 }

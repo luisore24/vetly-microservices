@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface AuthRepository extends JpaRepository<User, Long> {
 
 
 //    @Query("SELECT DISTINCT u FROM User u " +

@@ -1,7 +1,7 @@
 package com.company.microservice_auth.config;
 
 import com.company.microservice_auth.config.filter.JwtTokenValidator;
-import com.company.microservice_auth.exception.CustomAuthenticationEntryPointExceptionHandler;
+import com.company.microservice_auth.exception.auth.CustomAuthenticationEntryPointExceptionHandler;
 import com.company.microservice_auth.ServiceImpl.auth.CustomUserDetailsService;
 import com.company.microservice_auth.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,6 +20,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
@@ -42,12 +44,17 @@ public class SecurityConfig {
                 //.httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(https -> {
-                    https.requestMatchers(HttpMethod.POST, "/v1/auth/login").permitAll();
-                    https.requestMatchers("/v1/auth/validate").authenticated();
+                    https.requestMatchers(HttpMethod.POST, "/api/v1/auth/login").permitAll();
+                    https.requestMatchers("/api/v1/auth/validate").authenticated();
+                    https.requestMatchers("/api/v1/users/**").hasRole("ADMIN");
+                    https.requestMatchers("/api/v1/roles/**").hasRole("ADMIN");
+                    https.requestMatchers("/api/v1/permissions/**").hasRole("ADMIN");
+                    https.requestMatchers("/api/v1/menus/**").hasRole("ADMIN");
+                    https.requestMatchers("/api/v1/status/**").hasRole("ADMIN");
                     //https.requestMatchers(HttpMethod.GET, "/v1/auth/login").hasRole("ADMIN");
                     https.anyRequest().denyAll();
                 })
-                .addFilterBefore(new JwtTokenValidator(jwtUtil, customAuthenticationEntryPointExceptionHandler), BasicAuthenticationFilter.class)
+                .addFilterBefore(new JwtTokenValidator(jwtUtil, customAuthenticationEntryPointExceptionHandler), UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling(
                         exception -> {
                             exception.authenticationEntryPoint(customAuthenticationEntryPointExceptionHandler);

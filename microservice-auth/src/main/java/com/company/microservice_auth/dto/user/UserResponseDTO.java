@@ -1,7 +1,7 @@
 package com.company.microservice_auth.dto.user;
 
-import com.company.microservice_auth.entity.Status;
-import com.company.microservice_auth.entity.UserRole;
+import com.company.microservice_auth.dto.role.RoleSumary;
+import com.company.microservice_auth.dto.status.StatusDTO;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -19,7 +19,7 @@ public class UserResponseDTO {
     
     private String username;
 
-    private Set<UserRole> roles;
+    private Set<RoleSumary> rolesDTO;
 
     private String name;
 
@@ -31,24 +31,22 @@ public class UserResponseDTO {
 
     private String address;
 
-    private Status status;
+    private StatusDTO statusDTO;
     
-//    private Boolean isEnabled;
-//
-//    private Boolean accountNoExpired;
-//
-//    private Boolean accountNoLocked;
-//
-//    private Boolean credentialNoExpired;
-//
-//    private LocalDateTime createdAt;
-//
-//    private String createdBy;
-//
-//    private LocalDateTime updatedAt;
-//
-//    private String updatedBy;
-//
-//    private Boolean isDeleted;
+    private Boolean isEnabled;
+
+    private Boolean accountNoExpired;
+
+    private Boolean accountNoLocked;
+
+    private Boolean credentialNoExpired;
+
+    private LocalDateTime createdAt;
+
+    private String createdBy;
+
+    private LocalDateTime updatedAt;
+
+    private String updatedBy;
     
 }

@@ -17,7 +17,7 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<UserRole> userRoles;
@@ -35,7 +35,7 @@ public class Role {
     private String comment;
 
     @ManyToOne()
-    @JoinColumn(name = "status_id", nullable = false, foreignKey = @ForeignKey(name = "fk_user_status"))
+    @JoinColumn(name = "status_id", nullable = false, foreignKey = @ForeignKey(name = "fk_role_status"))
     private Status status;
 
     @Column(name = "created_at", nullable = false)

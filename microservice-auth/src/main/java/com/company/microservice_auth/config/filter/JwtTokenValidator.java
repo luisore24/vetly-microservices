@@ -2,7 +2,6 @@ package com.company.microservice_auth.config.filter;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.company.microservice_auth.exception.CustomAuthenticationEntryPointExceptionHandler;
 import com.company.microservice_auth.util.JwtUtil;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -71,7 +70,16 @@ public class JwtTokenValidator extends OncePerRequestFilter {
             }
         }
 
-        filterChain.doFilter(request, response);
+        try {
+            filterChain.doFilter(request, response);
+        }
+        catch (Exception exception){
+            System.out.println(exception.getMessage());
+            exception.printStackTrace();
+            throw  exception;
+        }
+
+
 
     }
 }
