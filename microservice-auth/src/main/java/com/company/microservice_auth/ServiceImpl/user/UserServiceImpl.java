@@ -40,6 +40,7 @@ public class UserServiceImpl implements UserService, UserInternalService, UserIn
     private final MessageHelper messageHelper;
     private final StatusInternalService statusInternalService;
     private final RoleInternalService roleInternalService;
+    private final UserMapper userMapper;
 
 
     @Override
@@ -52,7 +53,7 @@ public class UserServiceImpl implements UserService, UserInternalService, UserIn
             throw new ResourceAlreadyExistException("USER ALREADY EXIST");
         }
 
-        User user = UserMapper.instance.userCreateRequestDTOToUser(request);
+        User user = userMapper.userCreateRequestDTOToUser(request);
 
         String message = messageHelper.getMessage("process.successful.message");
 
@@ -68,7 +69,7 @@ public class UserServiceImpl implements UserService, UserInternalService, UserIn
         user.setCreatedAt(auditHelper.getTimeNow());
         user.setUpdatedBy(auditHelper.getUserLogged());
         user.setUpdatedAt(auditHelper.getTimeNow());
-
+        user.setIsDeleted(false);
 
         if(request.getRolesDTO() != null && !request.getRolesDTO().isEmpty()){
             Set<Role> roles = request.getRolesDTO().stream()
@@ -96,7 +97,7 @@ public class UserServiceImpl implements UserService, UserInternalService, UserIn
 
         User userRegistered = userRepository.save(user);
 
-        UserResponseDTO userResponseDTO = UserMapper.instance.userToUserResponseDTO(userRegistered);
+        UserResponseDTO userResponseDTO = userMapper.userToUserResponseDTO(userRegistered);
 
         return new ApiResponse<>(true, message, userResponseDTO);
     }
@@ -174,7 +175,7 @@ public class UserServiceImpl implements UserService, UserInternalService, UserIn
 
         User userUpdated = userRepository.save(user);
 
-        UserResponseDTO userResponseDTO = UserMapper.instance.userToUserResponseDTO(userUpdated);
+        UserResponseDTO userResponseDTO = userMapper.userToUserResponseDTO(userUpdated);
 
         return new ApiResponse<>(true, message, userResponseDTO);
 
@@ -223,7 +224,7 @@ public class UserServiceImpl implements UserService, UserInternalService, UserIn
 
         User user = findEntityById(aLong);
 
-        return UserMapper.instance.userToUserResponseDTO(user);
+        return userMapper.userToUserResponseDTO(user);
     }
 
     @Override
@@ -231,7 +232,7 @@ public class UserServiceImpl implements UserService, UserInternalService, UserIn
 
         List<User> list = findAllEntity();
 
-        return UserMapper.instance.listUserToListUserResponseDTO(list);
+        return userMapper.listUserToListUserResponseDTO(list);
     }
 
     @Override

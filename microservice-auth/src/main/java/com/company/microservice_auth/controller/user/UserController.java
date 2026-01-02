@@ -1,7 +1,6 @@
 package com.company.microservice_auth.controller.user;
 
 import com.company.microservice_auth.common.ApiResponse;
-import com.company.microservice_auth.dto.user.UserDTO;
 import com.company.microservice_auth.dto.user.UserCreateRequestDTO;
 import com.company.microservice_auth.dto.user.UserResponseDTO;
 import com.company.microservice_auth.dto.user.UserUpdateRequestDTO;
@@ -10,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/users")
@@ -42,6 +42,23 @@ public class UserController {
 
         return new ResponseEntity<>(userDeleted, HttpStatusCode.valueOf(200));
 
+    }
+
+    @GetMapping()
+    public ResponseEntity<ApiResponse<List<UserResponseDTO>>> getAllUsers(){
+
+        ApiResponse<List<UserResponseDTO>> usersList = userService.findAll();
+
+        return new ResponseEntity<>(usersList, HttpStatusCode.valueOf(200));
+    }
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiResponse<UserResponseDTO>> getUserById(@PathVariable("id") Long userId){
+
+        ApiResponse<UserResponseDTO> userFound = userService.findById(userId);
+
+        return new ResponseEntity<>(userFound, HttpStatusCode.valueOf(200));
     }
 
 

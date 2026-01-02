@@ -1,43 +1,56 @@
 package com.company.microservice_auth.mapper;
 
-import com.company.microservice_auth.dto.role.RoleSumary;
-import com.company.microservice_auth.dto.user.UserDTO;
 import com.company.microservice_auth.dto.user.UserCreateRequestDTO;
 import com.company.microservice_auth.dto.user.UserResponseDTO;
+import com.company.microservice_auth.entity.Status;
 import com.company.microservice_auth.entity.User;
 import com.company.microservice_auth.entity.UserRole;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.factory.Mappers;
+import org.mapstruct.Named;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface UserMapper {
 
-    UserMapper instance = Mappers.getMapper(UserMapper.class);
+    //UserMapper instance = Mappers.getMapper(UserMapper.class);
 
     @Mapping(source = "statusDTO", target = "status")
     @Mapping(source = "rolesDTO", target = "roles", ignore = true)
     User userCreateRequestDTOToUser(UserCreateRequestDTO requestDTO);
 
 
-    @Mapping(source = "status", target = "statusDTO")
-    @Mapping(target = "rolesDTO", expression = "java(mapRoles(user.getRoles()))")
+    @Mapping(target = "statusDTO", source = "status", qualifiedByName = "statusToDescription")
+    @Mapping(target = "rolesDTO", source = "roles", qualifiedByName = "rolesToNames")
     UserResponseDTO userToUserResponseDTO(User user);
 
-    @Mapping(source = "status", target = "statusDTO")
-    @Mapping(target = "rolesDTO", expression = "java(mapRoles(user.getRoles()))")
+
+    @Mapping(target = "statusDTO", source = "status", qualifiedByName = "statusToDescription")
+    @Mapping(target = "rolesDTO", source = "roles", qualifiedByName = "rolesToNames")
     List<UserResponseDTO> listUserToListUserResponseDTO(List<User> list);
 
 
-    default Set<RoleSumary> mapRoles(Set<UserRole> userRoles){
+    @Named("rolesToNames")
+    default Set<String> mapRoles(Set<UserRole> userRoles){
+
+        if(userRoles == null || userRoles.isEmpty()) return Collections.emptySet();
+
         return userRoles.stream()
-                .map(role -> new RoleSumary(role.getRole().getId(), role.getRole().getDescription(), role.getRole().getComment()))
+                .map(role -> role.getRole().getDescription())
                 .collect(Collectors.toSet());
+    }
+
+    @Named("statusToDescription")
+    default String mapStatus(Status status){
+
+        if(status == null ) return "";
+
+        return status.getDescription();
     }
 
 }

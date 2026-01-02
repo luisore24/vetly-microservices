@@ -19,7 +19,8 @@ public class UserResponseDTO {
     
     private String username;
 
-    private Set<RoleSumary> rolesDTO;
+    //private Set<RoleSumary> rolesDTO;
+    private Set<String> rolesDTO;
 
     private String name;
 
@@ -31,7 +32,8 @@ public class UserResponseDTO {
 
     private String address;
 
-    private StatusDTO statusDTO;
+    //private StatusDTO statusDTO;
+    private String statusDTO;
     
     private Boolean isEnabled;
 
