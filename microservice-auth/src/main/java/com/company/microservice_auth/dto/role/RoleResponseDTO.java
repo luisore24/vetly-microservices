@@ -1,14 +1,8 @@
 package com.company.microservice_auth.dto.role;
 
 import com.company.microservice_auth.dto.status.StatusDTO;
-import com.company.microservice_auth.dto.user.UserRoleDTO;
-import com.company.microservice_auth.entity.RoleMenu;
-import com.company.microservice_auth.entity.RolePermission;
-import com.company.microservice_auth.entity.UserRole;
 import lombok.*;
-
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Getter
 @Setter

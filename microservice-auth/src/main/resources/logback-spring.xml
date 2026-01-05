@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="LOG_DIR" value="./logs/auth-audit" />
+
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %highlight(%-5level) [%cyan(TraceID: %X{traceId:-N/A})] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="HourlyFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+<!--        <file>${LOG_DIR}/auth-service-current.log</file>-->
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [TraceID: %X{traceId:-N/A} | SpanID: %X{spanId:-N/A}] [%thread] %logger{50}#%M : %msg%n</pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_DIR}/auth-service-%d{yyyy-MM-dd_HH}.log</fileNamePattern>
+
+            <maxHistory>168</maxHistory> <totalSizeCap>500MB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="Console" />
+        <appender-ref ref="HourlyFile" />
+    </root>
+
+</configuration>

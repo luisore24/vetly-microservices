@@ -10,10 +10,12 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class UserCreateRequestDTO {
 
     private String username;
 
+    @ToString.Exclude
     private String password;
 
     private Set<Long> rolesDTO;

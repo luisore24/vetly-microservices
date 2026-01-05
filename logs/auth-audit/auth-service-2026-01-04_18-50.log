@@ -1,0 +1,7 @@
+2026-01-04 18:50:02.546 INFO  [TraceID: N/A] [http-nio-5405-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-04 18:50:02.550 INFO  [TraceID: N/A] [http-nio-5405-exec-1] o.s.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2026-01-04 18:50:02.552 INFO  [TraceID: N/A] [http-nio-5405-exec-1] o.s.web.servlet.DispatcherServlet : Completed initialization in 2 ms
+2026-01-04 18:50:02.724 INFO  [TraceID: 695afcaaa2b557603bab12c621ea682b] [http-nio-5405-exec-1] c.c.m.aspect.ObservabilityAspect : [START] | Process: USER_LOGIN | Method: loginAuthenticate | Arguments: [Hidden]
+2026-01-04 18:50:02.725 INFO  [TraceID: 695afcaaa2b557603bab12c621ea682b] [http-nio-5405-exec-1] c.c.m.S.auth.LoginServiceImpl : Begin Login with user: user
+2026-01-04 18:50:03.216 INFO  [TraceID: 695afcaaa2b557603bab12c621ea682b] [http-nio-5405-exec-1] c.c.m.S.auth.LoginServiceImpl : End Login - Successfull
+2026-01-04 18:50:03.217 INFO  [TraceID: 695afcaaa2b557603bab12c621ea682b] [http-nio-5405-exec-1] c.c.m.aspect.ObservabilityAspect : [END] | Process: USER_LOGIN | Method: loginAuthenticate | Time: 493 | Arguments: [Hidden]

@@ -22,8 +22,14 @@ spring:
     client:
       defaultZone: http://localhost:5401
 
+management:
+  application:
+    sampling:
+      probability: 1.0 #registra todas las peticiones
 
-
+logging:
+  pattern:
+    level: "%5p [${spring.application.name}, TraceID: %X{traceId:-N/A}, SpanID: %X{spandId:-N/A}]"
 
 security:
   jwt:

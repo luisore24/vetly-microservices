@@ -1,5 +1,6 @@
 package com.company.microservice_auth.ServiceImpl.user;
 
+import com.company.microservice_auth.aspect.Observed;
 import com.company.microservice_auth.common.ApiResponse;
 import com.company.microservice_auth.dto.user.UserCreateRequestDTO;
 import com.company.microservice_auth.dto.user.UserResponseDTO;
@@ -21,6 +22,7 @@ import com.company.microservice_auth.service.user.UserService;
 import com.company.microservice_auth.util.AuditHelper;
 import com.company.microservice_auth.util.MessageHelper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +34,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserServiceImpl implements UserService, UserInternalService, UserInternalDTOService {
 
     private final UserRepository userRepository;
@@ -45,13 +48,19 @@ public class UserServiceImpl implements UserService, UserInternalService, UserIn
 
     @Override
     @Transactional
+    @Observed(event = "USER_REGISTER", logRequest = false)
     public ApiResponse<UserResponseDTO> register(UserCreateRequestDTO request) {
 
+        log.info("Begin process user register");
+        log.info("Find if user exists: {}", request.getUsername());
         Optional<User> userFound = userRepository.findByUsername(request.getUsername());
 
         if(userFound.isPresent()) {
+            log.warn("user already exist");
             throw new ResourceAlreadyExistException("USER ALREADY EXIST");
         }
+
+        log.info("User available");
 
         User user = userMapper.userCreateRequestDTOToUser(request);
 
@@ -98,6 +107,8 @@ public class UserServiceImpl implements UserService, UserInternalService, UserIn
         User userRegistered = userRepository.save(user);
 
         UserResponseDTO userResponseDTO = userMapper.userToUserResponseDTO(userRegistered);
+
+        log.info("End proccess user register: Successfull");
 
         return new ApiResponse<>(true, message, userResponseDTO);
     }

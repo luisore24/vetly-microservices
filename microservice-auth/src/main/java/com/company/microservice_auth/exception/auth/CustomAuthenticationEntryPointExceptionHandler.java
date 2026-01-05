@@ -1,5 +1,6 @@
 package com.company.microservice_auth.exception.auth;
 
+import io.micrometer.tracing.Tracer;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -21,14 +22,22 @@ public class CustomAuthenticationEntryPointExceptionHandler implements Authentic
     @Autowired
     private MessageSource messageSource;
 
+    @Autowired
+    private Tracer tracer;
+
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
 
+        String traceId = "N/A";
+        if (tracer.currentSpan() != null) {
+            traceId = tracer.currentSpan().context().traceId();
+        }
+
         String message = "", statusCode = "", error = "", path = "";
         String responseErrorJson = "";
 
-        System.out.println("AuthenticationException class: " + authException.getMessage());
+        //System.out.println("AuthenticationException class: " + authException.getMessage());
 
 
         if (authException instanceof UsernameNotFoundException) {
@@ -62,7 +71,7 @@ public class CustomAuthenticationEntryPointExceptionHandler implements Authentic
         }
 
 
-        responseErrorJson = responseError(message, statusCode, error, LocalDateTime.now(), request.getRequestURI());
+        responseErrorJson = responseError(message, statusCode, error, LocalDateTime.now(), request.getRequestURI(), traceId);
 
         response.setContentType("application/json");
         response.setStatus(Integer.parseInt(statusCode));
@@ -71,10 +80,10 @@ public class CustomAuthenticationEntryPointExceptionHandler implements Authentic
 
     }
 
-    private String responseError(String message, String statusCode, String error, LocalDateTime time, String path) {
+    private String responseError(String message, String statusCode, String error, LocalDateTime time, String path, String traceId) {
         return String.format(
-                "{\"Message\": \"%s\", \"StatusCode\": \"%s\", \"Error\": \"%s\", \"timestamp\": \"%s\", \"Path\": \"%s\"}",
-                message, statusCode, error, time, path);
+                "{\"Message\": \"%s\", \"StatusCode\": \"%s\", \"Error\": \"%s\", \"timestamp\": \"%s\", \"Path\": \"%s\",\"TraceId\": \"%s\"}",
+                message, statusCode, error, time, path, traceId);
     }
 
 }

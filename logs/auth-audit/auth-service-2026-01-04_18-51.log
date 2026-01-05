@@ -1,0 +1,8 @@
+2026-01-04 18:51:19.236 INFO  [TraceID: 695afcf7e6b4a0a16585988a662bc3f8] [http-nio-5405-exec-5] c.c.m.aspect.ObservabilityAspect : [START] | Process: USER_LOGIN | Method: loginAuthenticate | Arguments: [Hidden]
+2026-01-04 18:51:19.238 INFO  [TraceID: 695afcf7e6b4a0a16585988a662bc3f8] [http-nio-5405-exec-5] c.c.m.S.auth.LoginServiceImpl : Begin Login with user: user
+2026-01-04 18:51:19.337 ERROR [TraceID: 695afcf7e6b4a0a16585988a662bc3f8] [http-nio-5405-exec-5] c.c.m.aspect.ObservabilityAspect : [END ERROR] | Process: USER_LOGIN | Method: loginAuthenticate | Time: 101 | ErrorMessage: Bad credentials
+2026-01-04 18:51:28.248 INFO  [TraceID: N/A] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-04 18:51:28.255 INFO  [TraceID: N/A] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown : Graceful shutdown complete
+2026-01-04 18:51:28.263 INFO  [TraceID: N/A] [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-04 18:51:28.265 INFO  [TraceID: N/A] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2026-01-04 18:51:28.270 INFO  [TraceID: N/A] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.

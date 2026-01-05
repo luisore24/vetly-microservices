@@ -4,7 +4,6 @@ import com.company.microservice_auth.common.ApiResponse;
 import com.company.microservice_auth.dto.menu.MenuCreateRequestDTO;
 import com.company.microservice_auth.dto.menu.MenuDTO;
 import com.company.microservice_auth.dto.menu.MenuResponseDTO;
-import com.company.microservice_auth.dto.permission.PermissionResponseDTO;
 import com.company.microservice_auth.service.menu.MenuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;

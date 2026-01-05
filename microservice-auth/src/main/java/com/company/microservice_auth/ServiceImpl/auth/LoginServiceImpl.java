@@ -1,5 +1,6 @@
 package com.company.microservice_auth.ServiceImpl.auth;
 
+import com.company.microservice_auth.aspect.Observed;
 import com.company.microservice_auth.dto.auth.AuditLoginRequestDTO;
 import com.company.microservice_auth.dto.auth.LoginRequest;
 import com.company.microservice_auth.dto.auth.LoginResponse;
@@ -7,6 +8,7 @@ import com.company.microservice_auth.service.auth.AuditLoginService;
 import com.company.microservice_auth.service.auth.LoginService;
 import com.company.microservice_auth.util.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,6 +25,7 @@ import java.util.Locale;
 
 
 @Service
+@Slf4j
 public class LoginServiceImpl implements LoginService {
 
     @Autowired
@@ -44,7 +47,10 @@ public class LoginServiceImpl implements LoginService {
     private AuditLoginService auditLoginService;
 
     @Override
+    @Observed(event = "USER_LOGIN", logRequest = false, logResponse = false)
     public LoginResponse loginAuthenticate(LoginRequest request, HttpServletRequest httpServletRequest) {
+
+        log.info("Begin Login with user: {}", request.getUsername());
 
         Authentication authentication = this.AuthenticateCredentials(request.getUsername(), request.getPassword(), httpServletRequest);
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -62,6 +68,8 @@ public class LoginServiceImpl implements LoginService {
         auditLoginService.register(auditLoginRequestDTO);
 
         String accessToken = jwtUtil.generateToken(authentication);
+
+        log.info("End Login - Successfull");
 
         LoginResponse response = new LoginResponse(request.getUsername(), accessToken, "200");
 
