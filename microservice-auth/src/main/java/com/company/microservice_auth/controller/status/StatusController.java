@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class StatusController {
 
     private final StatusService statusService;
 
+    @PreAuthorize("hasAuthority('WRITE_STATUS')")
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<StatusResponseDTO>> registerStatus(@RequestBody StatusCreateRequestDTO statusCreateRequestDTO){
 
@@ -28,6 +30,7 @@ public class StatusController {
 
     }
 
+    @PreAuthorize("hasAuthority('UPDATE_STATUS')")
     @PutMapping("/update")
     public ResponseEntity<ApiResponse<StatusResponseDTO>> updateStatus(@RequestBody StatusDTO statusRequestDTO){
 
@@ -36,6 +39,7 @@ public class StatusController {
         return new ResponseEntity<>(statusResponseDTO, HttpStatusCode.valueOf(200));
     }
 
+    @PreAuthorize("hasAuthority('DELETE_STATUS')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteStatus(@PathVariable("id") Long statusId){
 
@@ -45,6 +49,7 @@ public class StatusController {
 
     }
 
+    @PreAuthorize("hasAuthority('READ_STATUS')")
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<StatusResponseDTO>> findById(@Param("id") Long id){
 
@@ -53,6 +58,7 @@ public class StatusController {
         return new ResponseEntity<>(response, HttpStatusCode.valueOf(200));
     }
 
+    @PreAuthorize("hasAuthority('READ_STATUS')")
     @GetMapping("/all")
     public ResponseEntity<ApiResponse<List<StatusResponseDTO>>> findAll(){
         System.out.println("Print in controller");

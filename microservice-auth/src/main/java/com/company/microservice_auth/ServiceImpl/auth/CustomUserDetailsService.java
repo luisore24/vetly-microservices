@@ -33,7 +33,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
             userFound.getRoles().stream()
                     .flatMap(userRole -> userRole.getRole().getRolePermissions().stream())
-                    .forEach(rolePermission -> authorityList.add(new SimpleGrantedAuthority(rolePermission.getPermission().getDescription())));
+                    .forEach(rolePermission -> authorityList.add(new SimpleGrantedAuthority(rolePermission.getPermission().getName())));
 
             return new org.springframework.security.core.userdetails.User(
                     userFound.getUsername(),

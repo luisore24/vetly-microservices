@@ -13,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -25,6 +26,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 
     @Autowired
@@ -46,11 +48,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(https -> {
                     https.requestMatchers(HttpMethod.POST, "/api/v1/auth/login").permitAll();
                     https.requestMatchers("/api/v1/auth/validate").authenticated();
-                    https.requestMatchers("/api/v1/users/**").hasRole("ADMIN");
-                    https.requestMatchers("/api/v1/roles/**").hasRole("ADMIN");
-                    https.requestMatchers("/api/v1/permissions/**").hasRole("ADMIN");
-                    https.requestMatchers("/api/v1/menus/**").hasRole("ADMIN");
-                    https.requestMatchers("/api/v1/status/**").hasRole("ADMIN");
+                    https.requestMatchers("/api/v1/users/**").authenticated();
+                    https.requestMatchers("/api/v1/roles/**").authenticated();
+                    https.requestMatchers("/api/v1/permissions/**").authenticated();
+                    https.requestMatchers("/api/v1/menus/**").authenticated();
+                    https.requestMatchers("/api/v1/status/**").authenticated();
                     //https.requestMatchers(HttpMethod.GET, "/v1/auth/login").hasRole("ADMIN");
                     https.anyRequest().denyAll();
                 })

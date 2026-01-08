@@ -8,6 +8,7 @@ import com.company.microservice_auth.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class UserController {
 
     private final UserService userService;
 
+    @PreAuthorize("hasAuthority('WRITE_USER')")
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<UserResponseDTO>> registerUser(@RequestBody UserCreateRequestDTO userCreateRequestDTO){
 
@@ -27,6 +29,7 @@ public class UserController {
 
     }
 
+    @PreAuthorize("hasAuthority('UPDATE_USER')")
     @PutMapping("/update")
     public ResponseEntity<ApiResponse<UserResponseDTO>> updateUser(@RequestBody UserUpdateRequestDTO userRequestDTO){
 
@@ -35,6 +38,7 @@ public class UserController {
         return new ResponseEntity<>(userResponseDTO, HttpStatusCode.valueOf(200));
     }
 
+    @PreAuthorize("hasAuthority('DELETE_USER')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteUser(@PathVariable("id") Long userId){
 
@@ -44,6 +48,7 @@ public class UserController {
 
     }
 
+    @PreAuthorize("hasAuthority('READ_USER')")
     @GetMapping()
     public ResponseEntity<ApiResponse<List<UserResponseDTO>>> getAllUsers(){
 
@@ -53,6 +58,7 @@ public class UserController {
     }
 
 
+    @PreAuthorize("hasAuthority('READ_USER')")
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<UserResponseDTO>> getUserById(@PathVariable("id") Long userId){
 

@@ -1,6 +1,5 @@
 package com.company.microservice_auth.dto.permission;
 
-import com.company.microservice_auth.dto.role.RolePermissionDTO;
 import com.company.microservice_auth.dto.status.StatusDTO;
 import lombok.*;
 
@@ -16,6 +15,8 @@ public class PermissionCreateRequestDTO {
 
 
     private String description;
+
+    private String name;
 
     private String comment;
 

@@ -69,8 +69,9 @@ public class PermissionServiceImpl implements PermissionService, PermissionInter
         String message = messageHelper.getMessage("process.successful.message");
 
         Permission permissionUpdate = PermissionMapper.instance.permissionDTOToPermission(entity);
-        permissionUpdate.setCreatedBy(entity.getCreatedBy());
-        permissionUpdate.setCreatedAt(entity.getCreatedAt());
+        permissionUpdate.setName(permission.get().getName());
+        permissionUpdate.setCreatedBy(permission.get().getCreatedBy());
+        permissionUpdate.setCreatedAt(permission.get().getCreatedAt());
         permissionUpdate.setUpdatedBy(auditHelper.getUserLogged());
         permissionUpdate.setUpdatedAt(auditHelper.getTimeNow());
 

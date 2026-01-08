@@ -19,6 +19,8 @@ public class PermissionDTO {
 
     private Set<RolePermissionDTO> rolePermissionsDTO;
 
+    private String name;
+
     private String description;
 
     private String comment;

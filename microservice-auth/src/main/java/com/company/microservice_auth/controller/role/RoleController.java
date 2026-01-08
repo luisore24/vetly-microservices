@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class RoleController {
 
     private final RoleService roleService;
 
+    @PreAuthorize("hasAuthority('WRITE_ROLE')")
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<RoleResponseDTO>> registerRole(@RequestBody RoleCreateRequestDTO roleCreateRequestDTO){
 
@@ -31,6 +33,7 @@ public class RoleController {
 
     }
 
+    @PreAuthorize("hasAuthority('UPDATE_ROLE')")
     @PutMapping("/update")
     public ResponseEntity<ApiResponse<RoleResponseDTO>> updateRole(@RequestBody RoleUpdateRequestDTO roleUpdateRequestDTO){
 
@@ -39,6 +42,7 @@ public class RoleController {
         return new ResponseEntity<>(roleResponseDTO, HttpStatusCode.valueOf(200));
     }
 
+    @PreAuthorize("hasAuthority('DELETE_ROLE')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteRole(@PathVariable("id") Long roleId){
 
@@ -48,6 +52,7 @@ public class RoleController {
 
     }
 
+    @PreAuthorize("hasAuthority('READ_ROLE')")
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<RoleResponseDTO>> findById(@Param("id") Long id){
 
@@ -56,6 +61,7 @@ public class RoleController {
         return new ResponseEntity<>(response, HttpStatusCode.valueOf(200));
     }
 
+    @PreAuthorize("hasAuthority('READ_ROLE')")
     @GetMapping("/all")
     public ResponseEntity<ApiResponse<List<RoleResponseDTO>>> findAll(){
 

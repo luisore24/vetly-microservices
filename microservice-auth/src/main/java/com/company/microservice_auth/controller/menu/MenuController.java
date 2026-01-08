@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class MenuController {
 
     private final MenuService menuService;
 
+    @PreAuthorize("hasAuthority('WRITE_MENU')")
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<MenuResponseDTO>> registerMenu(@RequestBody MenuCreateRequestDTO menuCreateRequestDTO){
 
@@ -29,6 +31,7 @@ public class MenuController {
 
     }
 
+    @PreAuthorize("hasAuthority('UPDATE_MENU')")
     @PutMapping("/update")
     public ResponseEntity<ApiResponse<MenuResponseDTO>> updateMenu(@RequestBody MenuDTO menuRequestDTO){
 
@@ -37,6 +40,7 @@ public class MenuController {
         return new ResponseEntity<>(menuResponseDTO, HttpStatusCode.valueOf(200));
     }
 
+    @PreAuthorize("hasAuthority('DELETE_MENU')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteMenu(@PathVariable("id") Long menuId){
 
@@ -46,6 +50,7 @@ public class MenuController {
 
     }
 
+    @PreAuthorize("hasAuthority('READ_MENU')")
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<MenuResponseDTO>> findById(@Param("id") Long id){
 
@@ -54,6 +59,7 @@ public class MenuController {
         return new ResponseEntity<>(response, HttpStatusCode.valueOf(200));
     }
 
+    @PreAuthorize("hasAuthority('READ_MENU')")
     @GetMapping("/all")
     public ResponseEntity<ApiResponse<List<MenuResponseDTO>>> findAll(){
 

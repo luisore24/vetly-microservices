@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class PermissionController {
 
     private final PermissionService permissionService;
 
+    @PreAuthorize("hasAuthority('WRITE_PERMISSION')")
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<PermissionResponseDTO>> registerPermission(@RequestBody PermissionCreateRequestDTO permissionCreateRequestDTO){
 
@@ -30,6 +32,7 @@ public class PermissionController {
 
     }
 
+    @PreAuthorize("hasAuthority('UPDATE_PERMISSION')")
     @PutMapping("/update")
     public ResponseEntity<ApiResponse<PermissionResponseDTO>> updatePermission(@RequestBody PermissionDTO permissionRequestDTO){
 
@@ -38,6 +41,7 @@ public class PermissionController {
         return new ResponseEntity<>(permissionResponseDTO, HttpStatusCode.valueOf(200));
     }
 
+    @PreAuthorize("hasAuthority('DELETE_PERMISSION')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<ApiResponse<Void>> deletePermission(@PathVariable("id") Long permissionId){
 
@@ -47,6 +51,7 @@ public class PermissionController {
 
     }
 
+    @PreAuthorize("hasAuthority('READ_PERMISSION')")
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<PermissionResponseDTO>> findById(@Param("id") Long id){
 
@@ -55,6 +60,7 @@ public class PermissionController {
         return new ResponseEntity<>(response, HttpStatusCode.valueOf(200));
     }
 
+    @PreAuthorize("hasAuthority('READ_PERMISSION')")
     @GetMapping("/all")
     public ResponseEntity<ApiResponse<List<PermissionResponseDTO>>> findAll(){
 
