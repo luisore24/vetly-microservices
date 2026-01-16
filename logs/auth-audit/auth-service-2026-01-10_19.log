@@ -1,0 +1,202 @@
+2026-01-10 19:01:04.759 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] o.s.boot.web.embedded.tomcat.GracefulShutdown#shutDownGracefully : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-10 19:01:04.943 INFO  [TraceID: N/A | SpanID: N/A] [tomcat-shutdown] o.s.boot.web.embedded.tomcat.GracefulShutdown#doShutdown : Graceful shutdown complete
+2026-01-10 19:01:05.085 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] o.s.orm.jpa.LocalContainerEntityManagerFactoryBean#destroy : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-10 19:01:05.254 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource#close : HikariPool-1 - Shutdown initiated...
+2026-01-10 19:01:05.412 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource#close : HikariPool-1 - Shutdown completed.
+2026-01-10 19:07:51.004 INFO  [TraceID: N/A | SpanID: N/A] [main] c.c.microservice_auth.MicroserviceAuthApplication#logStarting : Starting MicroserviceAuthApplication using Java 21.0.5 with PID 964 (D:\projects\Vetly\vetly\microservice-auth\target\classes started by LUIS in D:\projects\Vetly\vetly)
+2026-01-10 19:07:51.017 INFO  [TraceID: N/A | SpanID: N/A] [main] c.c.microservice_auth.MicroserviceAuthApplication#logStartupProfileInfo : No active profile set, falling back to 1 default profile: "default"
+2026-01-10 19:07:53.218 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.d.r.config.RepositoryConfigurationDelegate#registerRepositoriesIn : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-10 19:07:53.426 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.d.r.config.RepositoryConfigurationDelegate#registerRepositoriesIn : Finished Spring Data repository scanning in 188 ms. Found 7 JPA repository interfaces.
+2026-01-10 19:07:55.519 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.boot.web.embedded.tomcat.TomcatWebServer#initialize : Tomcat initialized with port 5405 (http)
+2026-01-10 19:07:55.540 INFO  [TraceID: N/A | SpanID: N/A] [main] org.apache.coyote.http11.Http11NioProtocol#log : Initializing ProtocolHandler ["http-nio-5405"]
+2026-01-10 19:07:55.543 INFO  [TraceID: N/A | SpanID: N/A] [main] org.apache.catalina.core.StandardService#log : Starting service [Tomcat]
+2026-01-10 19:07:55.544 INFO  [TraceID: N/A | SpanID: N/A] [main] org.apache.catalina.core.StandardEngine#log : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2026-01-10 19:07:55.619 INFO  [TraceID: N/A | SpanID: N/A] [main] o.a.c.core.ContainerBase.[Tomcat].[localhost].[/]#log : Initializing Spring embedded WebApplicationContext
+2026-01-10 19:07:55.620 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.b.w.s.c.ServletWebServerApplicationContext#prepareWebApplicationContext : Root WebApplicationContext: initialization completed in 4506 ms
+2026-01-10 19:07:56.419 INFO  [TraceID: N/A | SpanID: N/A] [main] com.zaxxer.hikari.HikariDataSource#getConnection : HikariPool-1 - Starting...
+2026-01-10 19:07:56.722 INFO  [TraceID: N/A | SpanID: N/A] [main] com.zaxxer.hikari.pool.HikariPool#checkFailFast : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@af9dd34
+2026-01-10 19:07:56.724 INFO  [TraceID: N/A | SpanID: N/A] [main] com.zaxxer.hikari.HikariDataSource#getConnection : HikariPool-1 - Start completed.
+2026-01-10 19:07:56.800 INFO  [TraceID: N/A | SpanID: N/A] [main] org.flywaydb.core.FlywayExecutor#info : Database: jdbc:postgresql://localhost:5433/authentication_vetly (PostgreSQL 17.6)
+2026-01-10 19:07:56.916 INFO  [TraceID: N/A | SpanID: N/A] [main] org.flywaydb.core.internal.command.DbValidate#info : Successfully validated 5 migrations (execution time 00:00.065s)
+2026-01-10 19:07:56.982 INFO  [TraceID: N/A | SpanID: N/A] [main] org.flywaydb.core.internal.command.DbMigrate#info : Current version of schema "public": 5
+2026-01-10 19:07:56.989 INFO  [TraceID: N/A | SpanID: N/A] [main] org.flywaydb.core.internal.command.DbMigrate#info : Schema "public" is up to date. No migration necessary.
+2026-01-10 19:07:57.205 INFO  [TraceID: N/A | SpanID: N/A] [main] org.hibernate.jpa.internal.util.LogHelper#logPersistenceUnitInformation : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-10 19:07:57.335 INFO  [TraceID: N/A | SpanID: N/A] [main] org.hibernate.Version#logVersion : HHH000412: Hibernate ORM core version 6.6.22.Final
+2026-01-10 19:07:57.399 INFO  [TraceID: N/A | SpanID: N/A] [main] o.hibernate.cache.internal.RegionFactoryInitiator#initiateService : HHH000026: Second-level cache disabled
+2026-01-10 19:07:58.006 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.o.j.persistenceunit.SpringPersistenceUnitInfo#addTransformer : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-10 19:07:58.114 INFO  [TraceID: N/A | SpanID: N/A] [main] org.hibernate.orm.connections.pooling#logConnectionInfo : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-10 19:07:58.970 INFO  [TraceID: N/A | SpanID: N/A] [main] o.h.m.internal.EntityInstantiatorPojoStandard#resolveConstructor : HHH000182: No default (no-argument) constructor for class: com.company.microservice_auth.entity.AuditLogin (class must be instantiated by Interceptor)
+2026-01-10 19:07:59.340 INFO  [TraceID: N/A | SpanID: N/A] [main] o.h.e.t.jta.platform.internal.JtaPlatformInitiator#initiateService : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-10 19:07:59.343 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.orm.jpa.LocalContainerEntityManagerFactoryBean#buildNativeEntityManagerFactory : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-10 19:07:59.838 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.data.jpa.repository.query.QueryEnhancerFactory#<clinit> : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-10 19:08:00.613 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer#configure : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-01-10 19:08:00.614 WARN  [TraceID: N/A | SpanID: N/A] [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer#configure : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-01-10 19:08:00.926 WARN  [TraceID: N/A | SpanID: N/A] [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration#openEntityManagerInViewInterceptor : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-10 19:08:01.433 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.b.actuate.endpoint.web.EndpointLinksResolver#<init> : Exposing 1 endpoint beneath base path '/actuator'
+2026-01-10 19:08:02.282 INFO  [TraceID: N/A | SpanID: N/A] [main] org.apache.coyote.http11.Http11NioProtocol#log : Starting ProtocolHandler ["http-nio-5405"]
+2026-01-10 19:08:02.306 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.boot.web.embedded.tomcat.TomcatWebServer#start : Tomcat started on port 5405 (http) with context path '/'
+2026-01-10 19:08:02.320 INFO  [TraceID: N/A | SpanID: N/A] [main] c.c.microservice_auth.MicroserviceAuthApplication#logStarted : Started MicroserviceAuthApplication in 12.284 seconds (process running for 12.892)
+2026-01-10 19:09:01.944 INFO  [TraceID: N/A | SpanID: N/A] [http-nio-5405-exec-2] o.a.c.core.ContainerBase.[Tomcat].[localhost].[/]#log : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-10 19:09:01.944 INFO  [TraceID: N/A | SpanID: N/A] [http-nio-5405-exec-2] org.springframework.web.servlet.DispatcherServlet#initServletBean : Initializing Servlet 'dispatcherServlet'
+2026-01-10 19:09:01.946 INFO  [TraceID: N/A | SpanID: N/A] [http-nio-5405-exec-2] org.springframework.web.servlet.DispatcherServlet#initServletBean : Completed initialization in 1 ms
+2026-01-10 19:09:02.228 INFO  [TraceID: 6962ea1dbf9fb0dbe0af8b59d5122e22 | SpanID: 2988bd8fc45cd87f] [http-nio-5405-exec-2] c.c.microservice_auth.aspect.ObservabilityAspect#handleLogging : [START] | Process: USER_LOGIN | Method: loginAuthenticate | Arguments: [Hidden]
+2026-01-10 19:09:02.229 INFO  [TraceID: 6962ea1dbf9fb0dbe0af8b59d5122e22 | SpanID: 2988bd8fc45cd87f] [http-nio-5405-exec-2] c.c.m.ServiceImpl.auth.LoginServiceImpl#loginAuthenticate : Begin Login with user: user
+2026-01-10 19:09:02.797 ERROR [TraceID: 6962ea1dbf9fb0dbe0af8b59d5122e22 | SpanID: 2988bd8fc45cd87f] [http-nio-5405-exec-2] c.c.microservice_auth.aspect.ObservabilityAspect#handleLogging : [END ERROR] | Process: USER_LOGIN | Method: loginAuthenticate | Time: 569 | ErrorMessage: Bad credentials
+2026-01-10 19:12:53.233 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] o.s.boot.web.embedded.tomcat.GracefulShutdown#shutDownGracefully : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-10 19:12:53.244 INFO  [TraceID: N/A | SpanID: N/A] [tomcat-shutdown] o.s.boot.web.embedded.tomcat.GracefulShutdown#doShutdown : Graceful shutdown complete
+2026-01-10 19:12:53.249 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] o.s.orm.jpa.LocalContainerEntityManagerFactoryBean#destroy : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-10 19:12:53.255 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource#close : HikariPool-1 - Shutdown initiated...
+2026-01-10 19:12:53.262 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource#close : HikariPool-1 - Shutdown completed.
+2026-01-10 19:13:00.710 INFO  [TraceID: N/A | SpanID: N/A] [main] c.c.microservice_auth.MicroserviceAuthApplication#logStarting : Starting MicroserviceAuthApplication using Java 21.0.5 with PID 9492 (D:\projects\Vetly\vetly\microservice-auth\target\classes started by LUIS in D:\projects\Vetly\vetly)
+2026-01-10 19:13:00.713 INFO  [TraceID: N/A | SpanID: N/A] [main] c.c.microservice_auth.MicroserviceAuthApplication#logStartupProfileInfo : No active profile set, falling back to 1 default profile: "default"
+2026-01-10 19:13:02.631 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.d.r.config.RepositoryConfigurationDelegate#registerRepositoriesIn : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-10 19:13:02.830 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.d.r.config.RepositoryConfigurationDelegate#registerRepositoriesIn : Finished Spring Data repository scanning in 185 ms. Found 7 JPA repository interfaces.
+2026-01-10 19:13:04.326 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.boot.web.embedded.tomcat.TomcatWebServer#initialize : Tomcat initialized with port 5405 (http)
+2026-01-10 19:13:04.349 INFO  [TraceID: N/A | SpanID: N/A] [main] org.apache.coyote.http11.Http11NioProtocol#log : Initializing ProtocolHandler ["http-nio-5405"]
+2026-01-10 19:13:04.356 INFO  [TraceID: N/A | SpanID: N/A] [main] org.apache.catalina.core.StandardService#log : Starting service [Tomcat]
+2026-01-10 19:13:04.356 INFO  [TraceID: N/A | SpanID: N/A] [main] org.apache.catalina.core.StandardEngine#log : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2026-01-10 19:13:04.629 INFO  [TraceID: N/A | SpanID: N/A] [main] o.a.c.core.ContainerBase.[Tomcat].[localhost].[/]#log : Initializing Spring embedded WebApplicationContext
+2026-01-10 19:13:04.630 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.b.w.s.c.ServletWebServerApplicationContext#prepareWebApplicationContext : Root WebApplicationContext: initialization completed in 3815 ms
+2026-01-10 19:13:05.813 INFO  [TraceID: N/A | SpanID: N/A] [main] com.zaxxer.hikari.HikariDataSource#getConnection : HikariPool-1 - Starting...
+2026-01-10 19:13:06.099 INFO  [TraceID: N/A | SpanID: N/A] [main] com.zaxxer.hikari.pool.HikariPool#checkFailFast : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@18463720
+2026-01-10 19:13:06.102 INFO  [TraceID: N/A | SpanID: N/A] [main] com.zaxxer.hikari.HikariDataSource#getConnection : HikariPool-1 - Start completed.
+2026-01-10 19:13:06.141 INFO  [TraceID: N/A | SpanID: N/A] [main] org.flywaydb.core.FlywayExecutor#info : Database: jdbc:postgresql://localhost:5433/authentication_vetly (PostgreSQL 17.6)
+2026-01-10 19:13:06.240 INFO  [TraceID: N/A | SpanID: N/A] [main] org.flywaydb.core.internal.command.DbValidate#info : Successfully validated 5 migrations (execution time 00:00.061s)
+2026-01-10 19:13:06.307 INFO  [TraceID: N/A | SpanID: N/A] [main] org.flywaydb.core.internal.command.DbMigrate#info : Current version of schema "public": 5
+2026-01-10 19:13:06.347 INFO  [TraceID: N/A | SpanID: N/A] [main] org.flywaydb.core.internal.command.DbMigrate#info : Schema "public" is up to date. No migration necessary.
+2026-01-10 19:13:06.603 INFO  [TraceID: N/A | SpanID: N/A] [main] org.hibernate.jpa.internal.util.LogHelper#logPersistenceUnitInformation : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-10 19:13:06.761 INFO  [TraceID: N/A | SpanID: N/A] [main] org.hibernate.Version#logVersion : HHH000412: Hibernate ORM core version 6.6.22.Final
+2026-01-10 19:13:06.849 INFO  [TraceID: N/A | SpanID: N/A] [main] o.hibernate.cache.internal.RegionFactoryInitiator#initiateService : HHH000026: Second-level cache disabled
+2026-01-10 19:13:07.359 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.o.j.persistenceunit.SpringPersistenceUnitInfo#addTransformer : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-10 19:13:07.469 INFO  [TraceID: N/A | SpanID: N/A] [main] org.hibernate.orm.connections.pooling#logConnectionInfo : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-10 19:13:08.373 INFO  [TraceID: N/A | SpanID: N/A] [main] o.h.m.internal.EntityInstantiatorPojoStandard#resolveConstructor : HHH000182: No default (no-argument) constructor for class: com.company.microservice_auth.entity.AuditLogin (class must be instantiated by Interceptor)
+2026-01-10 19:13:08.787 INFO  [TraceID: N/A | SpanID: N/A] [main] o.h.e.t.jta.platform.internal.JtaPlatformInitiator#initiateService : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-10 19:13:08.790 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.orm.jpa.LocalContainerEntityManagerFactoryBean#buildNativeEntityManagerFactory : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-10 19:13:09.192 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.data.jpa.repository.query.QueryEnhancerFactory#<clinit> : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-10 19:13:09.977 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer#configure : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-01-10 19:13:09.978 WARN  [TraceID: N/A | SpanID: N/A] [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer#configure : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-01-10 19:13:10.499 WARN  [TraceID: N/A | SpanID: N/A] [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration#openEntityManagerInViewInterceptor : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-10 19:13:11.005 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.b.actuate.endpoint.web.EndpointLinksResolver#<init> : Exposing 1 endpoint beneath base path '/actuator'
+2026-01-10 19:13:11.859 INFO  [TraceID: N/A | SpanID: N/A] [main] org.apache.coyote.http11.Http11NioProtocol#log : Starting ProtocolHandler ["http-nio-5405"]
+2026-01-10 19:13:11.882 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.boot.web.embedded.tomcat.TomcatWebServer#start : Tomcat started on port 5405 (http) with context path '/'
+2026-01-10 19:13:11.900 INFO  [TraceID: N/A | SpanID: N/A] [main] c.c.microservice_auth.MicroserviceAuthApplication#logStarted : Started MicroserviceAuthApplication in 12.147 seconds (process running for 12.655)
+2026-01-10 19:13:17.123 INFO  [TraceID: N/A | SpanID: N/A] [http-nio-5405-exec-2] o.a.c.core.ContainerBase.[Tomcat].[localhost].[/]#log : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-10 19:13:17.125 INFO  [TraceID: N/A | SpanID: N/A] [http-nio-5405-exec-2] org.springframework.web.servlet.DispatcherServlet#initServletBean : Initializing Servlet 'dispatcherServlet'
+2026-01-10 19:13:17.127 INFO  [TraceID: N/A | SpanID: N/A] [http-nio-5405-exec-2] org.springframework.web.servlet.DispatcherServlet#initServletBean : Completed initialization in 2 ms
+2026-01-10 19:13:17.264 INFO  [TraceID: 6962eb1dc6d491498cb3539c7bb94147 | SpanID: 33d37d810cd26daf] [http-nio-5405-exec-2] c.c.microservice_auth.aspect.ObservabilityAspect#handleLogging : [START] | Process: USER_LOGIN | Method: loginAuthenticate | Arguments: [Hidden]
+2026-01-10 19:13:17.265 INFO  [TraceID: 6962eb1dc6d491498cb3539c7bb94147 | SpanID: 33d37d810cd26daf] [http-nio-5405-exec-2] c.c.m.ServiceImpl.auth.LoginServiceImpl#loginAuthenticate : Begin Login with user: user
+2026-01-10 19:13:17.721 ERROR [TraceID: 6962eb1dc6d491498cb3539c7bb94147 | SpanID: 33d37d810cd26daf] [http-nio-5405-exec-2] c.c.microservice_auth.aspect.ObservabilityAspect#handleLogging : [END ERROR] | Process: USER_LOGIN | Method: loginAuthenticate | Time: 457 | ErrorMessage: Bad credentials
+2026-01-10 19:33:28.848 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] o.s.boot.web.embedded.tomcat.GracefulShutdown#shutDownGracefully : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-10 19:33:28.858 INFO  [TraceID: N/A | SpanID: N/A] [tomcat-shutdown] o.s.boot.web.embedded.tomcat.GracefulShutdown#doShutdown : Graceful shutdown complete
+2026-01-10 19:33:28.866 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] o.s.orm.jpa.LocalContainerEntityManagerFactoryBean#destroy : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-10 19:33:28.869 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource#close : HikariPool-1 - Shutdown initiated...
+2026-01-10 19:33:28.881 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource#close : HikariPool-1 - Shutdown completed.
+2026-01-10 19:33:35.039 INFO  [TraceID: N/A | SpanID: N/A] [main] c.c.microservice_auth.MicroserviceAuthApplication#logStarting : Starting MicroserviceAuthApplication using Java 21.0.5 with PID 6876 (D:\projects\Vetly\vetly\microservice-auth\target\classes started by LUIS in D:\projects\Vetly\vetly)
+2026-01-10 19:33:35.042 INFO  [TraceID: N/A | SpanID: N/A] [main] c.c.microservice_auth.MicroserviceAuthApplication#logStartupProfileInfo : No active profile set, falling back to 1 default profile: "default"
+2026-01-10 19:33:36.799 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.d.r.config.RepositoryConfigurationDelegate#registerRepositoriesIn : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-10 19:33:36.952 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.d.r.config.RepositoryConfigurationDelegate#registerRepositoriesIn : Finished Spring Data repository scanning in 139 ms. Found 7 JPA repository interfaces.
+2026-01-10 19:33:38.490 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.boot.web.embedded.tomcat.TomcatWebServer#initialize : Tomcat initialized with port 5405 (http)
+2026-01-10 19:33:38.509 INFO  [TraceID: N/A | SpanID: N/A] [main] org.apache.coyote.http11.Http11NioProtocol#log : Initializing ProtocolHandler ["http-nio-5405"]
+2026-01-10 19:33:38.512 INFO  [TraceID: N/A | SpanID: N/A] [main] org.apache.catalina.core.StandardService#log : Starting service [Tomcat]
+2026-01-10 19:33:38.513 INFO  [TraceID: N/A | SpanID: N/A] [main] org.apache.catalina.core.StandardEngine#log : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2026-01-10 19:33:38.598 INFO  [TraceID: N/A | SpanID: N/A] [main] o.a.c.core.ContainerBase.[Tomcat].[localhost].[/]#log : Initializing Spring embedded WebApplicationContext
+2026-01-10 19:33:38.598 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.b.w.s.c.ServletWebServerApplicationContext#prepareWebApplicationContext : Root WebApplicationContext: initialization completed in 3493 ms
+2026-01-10 19:33:39.280 INFO  [TraceID: N/A | SpanID: N/A] [main] com.zaxxer.hikari.HikariDataSource#getConnection : HikariPool-1 - Starting...
+2026-01-10 19:33:39.520 INFO  [TraceID: N/A | SpanID: N/A] [main] com.zaxxer.hikari.pool.HikariPool#checkFailFast : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@f237ae7
+2026-01-10 19:33:39.522 INFO  [TraceID: N/A | SpanID: N/A] [main] com.zaxxer.hikari.HikariDataSource#getConnection : HikariPool-1 - Start completed.
+2026-01-10 19:33:39.562 INFO  [TraceID: N/A | SpanID: N/A] [main] org.flywaydb.core.FlywayExecutor#info : Database: jdbc:postgresql://localhost:5433/authentication_vetly (PostgreSQL 17.6)
+2026-01-10 19:33:39.641 INFO  [TraceID: N/A | SpanID: N/A] [main] org.flywaydb.core.internal.command.DbValidate#info : Successfully validated 5 migrations (execution time 00:00.043s)
+2026-01-10 19:33:39.707 INFO  [TraceID: N/A | SpanID: N/A] [main] org.flywaydb.core.internal.command.DbMigrate#info : Current version of schema "public": 5
+2026-01-10 19:33:39.714 INFO  [TraceID: N/A | SpanID: N/A] [main] org.flywaydb.core.internal.command.DbMigrate#info : Schema "public" is up to date. No migration necessary.
+2026-01-10 19:33:39.916 INFO  [TraceID: N/A | SpanID: N/A] [main] org.hibernate.jpa.internal.util.LogHelper#logPersistenceUnitInformation : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-10 19:33:40.050 INFO  [TraceID: N/A | SpanID: N/A] [main] org.hibernate.Version#logVersion : HHH000412: Hibernate ORM core version 6.6.22.Final
+2026-01-10 19:33:40.116 INFO  [TraceID: N/A | SpanID: N/A] [main] o.hibernate.cache.internal.RegionFactoryInitiator#initiateService : HHH000026: Second-level cache disabled
+2026-01-10 19:33:40.508 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.o.j.persistenceunit.SpringPersistenceUnitInfo#addTransformer : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-10 19:33:40.619 INFO  [TraceID: N/A | SpanID: N/A] [main] org.hibernate.orm.connections.pooling#logConnectionInfo : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-10 19:33:41.538 INFO  [TraceID: N/A | SpanID: N/A] [main] o.h.m.internal.EntityInstantiatorPojoStandard#resolveConstructor : HHH000182: No default (no-argument) constructor for class: com.company.microservice_auth.entity.AuditLogin (class must be instantiated by Interceptor)
+2026-01-10 19:33:41.913 INFO  [TraceID: N/A | SpanID: N/A] [main] o.h.e.t.jta.platform.internal.JtaPlatformInitiator#initiateService : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-10 19:33:41.916 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.orm.jpa.LocalContainerEntityManagerFactoryBean#buildNativeEntityManagerFactory : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-10 19:33:42.279 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.data.jpa.repository.query.QueryEnhancerFactory#<clinit> : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-10 19:33:43.189 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer#configure : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-01-10 19:33:43.190 WARN  [TraceID: N/A | SpanID: N/A] [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer#configure : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-01-10 19:33:43.531 WARN  [TraceID: N/A | SpanID: N/A] [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration#openEntityManagerInViewInterceptor : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-10 19:33:43.942 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.b.actuate.endpoint.web.EndpointLinksResolver#<init> : Exposing 1 endpoint beneath base path '/actuator'
+2026-01-10 19:33:44.539 INFO  [TraceID: N/A | SpanID: N/A] [main] org.apache.coyote.http11.Http11NioProtocol#log : Starting ProtocolHandler ["http-nio-5405"]
+2026-01-10 19:33:44.566 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.boot.web.embedded.tomcat.TomcatWebServer#start : Tomcat started on port 5405 (http) with context path '/'
+2026-01-10 19:33:44.581 INFO  [TraceID: N/A | SpanID: N/A] [main] c.c.microservice_auth.MicroserviceAuthApplication#logStarted : Started MicroserviceAuthApplication in 10.294 seconds (process running for 10.744)
+2026-01-10 19:53:24.990 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] o.s.boot.web.embedded.tomcat.GracefulShutdown#shutDownGracefully : Commencing graceful shutdown. Waiting for active requests to complete
+2026-01-10 19:53:25.004 INFO  [TraceID: N/A | SpanID: N/A] [tomcat-shutdown] o.s.boot.web.embedded.tomcat.GracefulShutdown#doShutdown : Graceful shutdown complete
+2026-01-10 19:53:25.012 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] o.s.orm.jpa.LocalContainerEntityManagerFactoryBean#destroy : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-01-10 19:53:25.014 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource#close : HikariPool-1 - Shutdown initiated...
+2026-01-10 19:53:25.022 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource#close : HikariPool-1 - Shutdown completed.
+2026-01-10 19:53:33.741 INFO  [TraceID: N/A | SpanID: N/A] [main] c.c.microservice_auth.MicroserviceAuthApplication#logStarting : Starting MicroserviceAuthApplication using Java 21.0.5 with PID 12512 (D:\projects\Vetly\vetly\microservice-auth\target\classes started by LUIS in D:\projects\Vetly\vetly)
+2026-01-10 19:53:33.746 INFO  [TraceID: N/A | SpanID: N/A] [main] c.c.microservice_auth.MicroserviceAuthApplication#logStartupProfileInfo : No active profile set, falling back to 1 default profile: "default"
+2026-01-10 19:53:36.214 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.d.r.config.RepositoryConfigurationDelegate#registerRepositoriesIn : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-01-10 19:53:36.354 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.d.r.config.RepositoryConfigurationDelegate#registerRepositoriesIn : Finished Spring Data repository scanning in 126 ms. Found 7 JPA repository interfaces.
+2026-01-10 19:53:37.472 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.boot.web.embedded.tomcat.TomcatWebServer#initialize : Tomcat initialized with port 5405 (http)
+2026-01-10 19:53:37.494 INFO  [TraceID: N/A | SpanID: N/A] [main] org.apache.coyote.http11.Http11NioProtocol#log : Initializing ProtocolHandler ["http-nio-5405"]
+2026-01-10 19:53:37.498 INFO  [TraceID: N/A | SpanID: N/A] [main] org.apache.catalina.core.StandardService#log : Starting service [Tomcat]
+2026-01-10 19:53:37.498 INFO  [TraceID: N/A | SpanID: N/A] [main] org.apache.catalina.core.StandardEngine#log : Starting Servlet engine: [Apache Tomcat/10.1.43]
+2026-01-10 19:53:37.593 INFO  [TraceID: N/A | SpanID: N/A] [main] o.a.c.core.ContainerBase.[Tomcat].[localhost].[/]#log : Initializing Spring embedded WebApplicationContext
+2026-01-10 19:53:37.594 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.b.w.s.c.ServletWebServerApplicationContext#prepareWebApplicationContext : Root WebApplicationContext: initialization completed in 3753 ms
+2026-01-10 19:53:38.282 INFO  [TraceID: N/A | SpanID: N/A] [main] com.zaxxer.hikari.HikariDataSource#getConnection : HikariPool-1 - Starting...
+2026-01-10 19:53:38.562 INFO  [TraceID: N/A | SpanID: N/A] [main] com.zaxxer.hikari.pool.HikariPool#checkFailFast : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@283bb8b7
+2026-01-10 19:53:38.565 INFO  [TraceID: N/A | SpanID: N/A] [main] com.zaxxer.hikari.HikariDataSource#getConnection : HikariPool-1 - Start completed.
+2026-01-10 19:53:38.609 INFO  [TraceID: N/A | SpanID: N/A] [main] org.flywaydb.core.FlywayExecutor#info : Database: jdbc:postgresql://localhost:5433/authentication_vetly (PostgreSQL 17.6)
+2026-01-10 19:53:38.706 INFO  [TraceID: N/A | SpanID: N/A] [main] org.flywaydb.core.internal.command.DbValidate#info : Successfully validated 5 migrations (execution time 00:00.055s)
+2026-01-10 19:53:38.770 INFO  [TraceID: N/A | SpanID: N/A] [main] org.flywaydb.core.internal.command.DbMigrate#info : Current version of schema "public": 5
+2026-01-10 19:53:38.777 INFO  [TraceID: N/A | SpanID: N/A] [main] org.flywaydb.core.internal.command.DbMigrate#info : Schema "public" is up to date. No migration necessary.
+2026-01-10 19:53:39.036 INFO  [TraceID: N/A | SpanID: N/A] [main] org.hibernate.jpa.internal.util.LogHelper#logPersistenceUnitInformation : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-01-10 19:53:39.179 INFO  [TraceID: N/A | SpanID: N/A] [main] org.hibernate.Version#logVersion : HHH000412: Hibernate ORM core version 6.6.22.Final
+2026-01-10 19:53:39.280 INFO  [TraceID: N/A | SpanID: N/A] [main] o.hibernate.cache.internal.RegionFactoryInitiator#initiateService : HHH000026: Second-level cache disabled
+2026-01-10 19:53:39.811 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.o.j.persistenceunit.SpringPersistenceUnitInfo#addTransformer : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-01-10 19:53:39.966 INFO  [TraceID: N/A | SpanID: N/A] [main] org.hibernate.orm.connections.pooling#logConnectionInfo : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 17.6
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-01-10 19:53:40.994 INFO  [TraceID: N/A | SpanID: N/A] [main] o.h.m.internal.EntityInstantiatorPojoStandard#resolveConstructor : HHH000182: No default (no-argument) constructor for class: com.company.microservice_auth.entity.AuditLogin (class must be instantiated by Interceptor)
+2026-01-10 19:53:41.404 INFO  [TraceID: N/A | SpanID: N/A] [main] o.h.e.t.jta.platform.internal.JtaPlatformInitiator#initiateService : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-01-10 19:53:41.408 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.orm.jpa.LocalContainerEntityManagerFactoryBean#buildNativeEntityManagerFactory : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-01-10 19:53:41.930 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.data.jpa.repository.query.QueryEnhancerFactory#<clinit> : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-01-10 19:53:42.641 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer#configure : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-01-10 19:53:42.642 WARN  [TraceID: N/A | SpanID: N/A] [main] o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer#configure : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-01-10 19:53:42.969 WARN  [TraceID: N/A | SpanID: N/A] [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration#openEntityManagerInViewInterceptor : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-01-10 19:53:43.408 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.b.actuate.endpoint.web.EndpointLinksResolver#<init> : Exposing 1 endpoint beneath base path '/actuator'
+2026-01-10 19:53:44.101 INFO  [TraceID: N/A | SpanID: N/A] [main] org.apache.coyote.http11.Http11NioProtocol#log : Starting ProtocolHandler ["http-nio-5405"]
+2026-01-10 19:53:44.129 INFO  [TraceID: N/A | SpanID: N/A] [main] o.s.boot.web.embedded.tomcat.TomcatWebServer#start : Tomcat started on port 5405 (http) with context path '/'
+2026-01-10 19:53:44.154 INFO  [TraceID: N/A | SpanID: N/A] [main] c.c.microservice_auth.MicroserviceAuthApplication#logStarted : Started MicroserviceAuthApplication in 11.324 seconds (process running for 11.87)
+2026-01-10 19:57:41.998 INFO  [TraceID: N/A | SpanID: N/A] [http-nio-5405-exec-2] o.a.c.core.ContainerBase.[Tomcat].[localhost].[/]#log : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-10 19:57:42.000 INFO  [TraceID: N/A | SpanID: N/A] [http-nio-5405-exec-2] org.springframework.web.servlet.DispatcherServlet#initServletBean : Initializing Servlet 'dispatcherServlet'
+2026-01-10 19:57:42.014 INFO  [TraceID: N/A | SpanID: N/A] [http-nio-5405-exec-2] org.springframework.web.servlet.DispatcherServlet#initServletBean : Completed initialization in 12 ms
+2026-01-10 19:57:42.159 INFO  [TraceID: 6962f586c28803c3d95a7846266d3480 | SpanID: 468a3923f29e1b05] [http-nio-5405-exec-2] c.c.microservice_auth.aspect.ObservabilityAspect#handleLogging : [START] | Process: USER_LOGIN | Method: loginAuthenticate | Arguments: [Hidden]
+2026-01-10 19:57:42.159 INFO  [TraceID: 6962f586c28803c3d95a7846266d3480 | SpanID: 468a3923f29e1b05] [http-nio-5405-exec-2] c.c.m.ServiceImpl.auth.LoginServiceImpl#loginAuthenticate : Begin Login with user: user
+2026-01-10 19:57:42.598 ERROR [TraceID: 6962f586c28803c3d95a7846266d3480 | SpanID: 468a3923f29e1b05] [http-nio-5405-exec-2] c.c.microservice_auth.aspect.ObservabilityAspect#handleLogging : [END ERROR] | Process: USER_LOGIN | Method: loginAuthenticate | Time: 439 | ErrorMessage: Bad credentials
+2026-01-10 19:58:02.511 INFO  [TraceID: 6962f59a71673eb66b66b62675f98f14 | SpanID: 8f23a6050a73a530] [http-nio-5405-exec-3] c.c.microservice_auth.aspect.ObservabilityAspect#handleLogging : [START] | Process: USER_LOGIN | Method: loginAuthenticate | Arguments: [Hidden]
+2026-01-10 19:58:02.513 INFO  [TraceID: 6962f59a71673eb66b66b62675f98f14 | SpanID: 8f23a6050a73a530] [http-nio-5405-exec-3] c.c.m.ServiceImpl.auth.LoginServiceImpl#loginAuthenticate : Begin Login with user: user
+2026-01-10 19:58:02.632 INFO  [TraceID: 6962f59a71673eb66b66b62675f98f14 | SpanID: 8f23a6050a73a530] [http-nio-5405-exec-3] c.c.m.ServiceImpl.auth.LoginServiceImpl#loginAuthenticate : End Login - Successfull
+2026-01-10 19:58:02.633 INFO  [TraceID: 6962f59a71673eb66b66b62675f98f14 | SpanID: 8f23a6050a73a530] [http-nio-5405-exec-3] c.c.microservice_auth.aspect.ObservabilityAspect#handleLogging : [END] | Process: USER_LOGIN | Method: loginAuthenticate | Time: 122 | Arguments: [Hidden]

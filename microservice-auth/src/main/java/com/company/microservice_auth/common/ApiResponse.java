@@ -1,5 +1,6 @@
 package com.company.microservice_auth.common;
 
+import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;

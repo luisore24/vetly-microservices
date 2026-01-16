@@ -23,7 +23,7 @@ spring:
       defaultZone: http://localhost:5401
 
 management:
-  application:
+  tracing:
     sampling:
       probability: 1.0 #registra todas las peticiones
 
