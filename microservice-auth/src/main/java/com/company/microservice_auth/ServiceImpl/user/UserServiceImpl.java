@@ -117,7 +117,10 @@ public class UserServiceImpl implements UserService, UserInternalService, UserIn
 
     @Override
     @Transactional
+    @Observed(event = "USER_UPDATE")
     public ApiResponse<UserResponseDTO> update(UserUpdateRequestDTO request) {
+
+        log.info("Begin update user");
 
         Optional<User> userFound = userRepository.findById(request.getId());
 
@@ -188,32 +191,45 @@ public class UserServiceImpl implements UserService, UserInternalService, UserIn
 
         UserResponseDTO userResponseDTO = userMapper.userToUserResponseDTO(userUpdated);
 
+        log.info("End update user");
+
         return new ApiResponse<>(true, message, userResponseDTO);
 
     }
 
     @Override
+    @Observed(event = "USER_GET")
     public ApiResponse<UserResponseDTO> findById(Long id) {
+
+        log.info("Begin find user by id");
 
         UserResponseDTO userResponseDTO = findEntityDTOById(id);
 
         String message = messageHelper.getMessage("process.successful.message");
 
+        log.info("End find user by id");
+
         return new ApiResponse<>(true, message, userResponseDTO);
     }
 
     @Override
+    @Observed(event = "USER_GET_ALL")
     public ApiResponse<List<UserResponseDTO>> findAll() {
+
+        log.info("Begin find all users");
 
         List<UserResponseDTO> list = findAllEntityDTO();
 
         String message = messageHelper.getMessage("process.successful.message");
+
+        log.info("End find all users");
 
         return new ApiResponse<>(true, message, list);
     }
 
 
     @Override
+    @Observed(event = "USER_DELETE")
     public ApiResponse<Void> remove(Long id) {
 
         Optional<User> op = userRepository.findById(id);

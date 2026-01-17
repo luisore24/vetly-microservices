@@ -1,5 +1,6 @@
 package com.company.microservice_auth.exception.auth;
 
+import com.company.microservice_auth.aspect.Observed;
 import com.company.microservice_auth.common.ApiErrorResponse;
 import com.company.microservice_auth.common.ErrorResponseFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -37,57 +38,17 @@ public class CustomAuthenticationEntryPointExceptionHandler implements Authentic
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
 
-
-//        String message = "",  error = "";
-//
-//        Integer statusCode = 0;
-
         String traceId = "N/A";
         if (tracer.currentSpan() != null) {
             traceId = tracer.currentSpan().context().traceId();
         }
 
 
-
-
-//        if (authException instanceof UsernameNotFoundException) {
-//            message = getMessageProperties("error.usernamenotfound.message");
-//            statusCode = Integer.parseInt(getMessageProperties("error.usernamenotfound.statuscode"));
-//            error = getMessageProperties("error.usernamenotfound.error");
-//        } else if (authException instanceof BadCredentialsException) {
-//            message = getMessageProperties("error.badcredential.message");
-//            statusCode = Integer.parseInt(getMessageProperties("error.badcredential.statuscode"));
-//            error = getMessageProperties("error.badcredential.error");
-//        } else if (authException instanceof DisabledException) {
-//            message = getMessageProperties("error.accountdisable.message");
-//            statusCode = Integer.parseInt(getMessageProperties("error.accountdisable.statuscode"));
-//            error = getMessageProperties("error.accountdisable.error");
-//        } else if (authException instanceof LockedException) {
-//            message = getMessageProperties("error.accountlocked.message");
-//            statusCode = Integer.parseInt(getMessageProperties("error.accountlocked.statuscode"));
-//            error = getMessageProperties("error.locked.error");
-//        } else if (authException instanceof AccountExpiredException) {
-//            message = getMessageProperties("error.accountexpired.message");
-//            statusCode = Integer.parseInt(getMessageProperties("error.accountexpired.statuscode"));
-//            error = getMessageProperties("error.accountexpired.error");
-//        } else if (authException instanceof CredentialsExpiredException) {
-//            message = getMessageProperties("error.credentialexpired.message");
-//            statusCode = Integer.parseInt(getMessageProperties("error.credentialexpired.statuscode"));
-//            error = getMessageProperties("error.credentialexpired.error");
-//        }
-//        else {
-//            message = getMessageProperties("error.logindefault.message");
-//            statusCode = Integer.parseInt(getMessageProperties("error.logindefault.statuscode"));
-//            error = authException.getMessage();
-//        }
-
-        System.out.println("commence error");
-
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        ApiErrorResponse apiErrorResponse = errorResponseFactory.buildFromException(authException, request.getRequestURI(), traceId, HttpStatus.UNAUTHORIZED.value(), getMessageProperties("error.logindefault.message"));
+        ApiErrorResponse apiErrorResponse = getApiErrorResponseObserved(authException, request,traceId);
 
         String reponseJson = objectMapper.writeValueAsString(apiErrorResponse);
 
@@ -96,6 +57,12 @@ public class CustomAuthenticationEntryPointExceptionHandler implements Authentic
         response.setStatus(apiErrorResponse.getStatusCode());
         response.getWriter().write(reponseJson);
 
+    }
+
+
+    @Observed(event = "AUTH_UNAUTHORIZED", logRequest = false)
+    private ApiErrorResponse getApiErrorResponseObserved(AuthenticationException authenticationException, HttpServletRequest request, String traceId){
+        return errorResponseFactory.buildFromException(authenticationException, request.getRequestURI(), traceId, HttpStatus.UNAUTHORIZED.value(), getMessageProperties("error.logindefault.message"));
     }
 
     private String getMessageProperties(String code) {

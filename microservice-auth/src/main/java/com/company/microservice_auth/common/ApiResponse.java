@@ -1,11 +1,12 @@
 package com.company.microservice_auth.common;
 
-import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 
 @Getter
+@ToString
 public class ApiResponse<T> {
 
     private boolean success;
