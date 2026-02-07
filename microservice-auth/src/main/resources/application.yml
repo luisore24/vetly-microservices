@@ -16,16 +16,32 @@ spring:
       hibernate:
         format_sql: true
 
-  eureka:
-    instance:
-      hostname: localhost
-    client:
-      defaultZone: http://localhost:5401
+
+  cloud:
+    inetutils:
+      preferred-networks:
+        - 127.0.0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5401/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
 management:
   tracing:
     sampling:
       probability: 1.0 #registra todas las peticiones
+    propagation:
+      type: w3c
+  endpoints:
+    web:
+      exposure:
+        include: "health,info"
+  endpoint:
+    health:
+      show-details: always
 
 logging:
   pattern:

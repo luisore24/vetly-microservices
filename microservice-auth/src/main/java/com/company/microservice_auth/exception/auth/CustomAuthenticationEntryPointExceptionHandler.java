@@ -13,9 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.*;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
@@ -34,21 +32,22 @@ public class CustomAuthenticationEntryPointExceptionHandler implements Authentic
     @Autowired
     private MessageSource messageSource;
 
+    private String getTracerId(){
+        if(tracer.currentSpan() != null){
+            return tracer.currentSpan().context().traceId();
+        }
+        return "N/A";
+    }
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-
-        String traceId = "N/A";
-        if (tracer.currentSpan() != null) {
-            traceId = tracer.currentSpan().context().traceId();
-        }
 
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        ApiErrorResponse apiErrorResponse = getApiErrorResponseObserved(authException, request,traceId);
+        ApiErrorResponse apiErrorResponse = getApiErrorResponseObserved(authException, request,getTracerId());
 
         String reponseJson = objectMapper.writeValueAsString(apiErrorResponse);
 

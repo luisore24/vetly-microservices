@@ -1,5 +1,0 @@
-2026-01-14 22:40:41.635 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] o.s.boot.web.embedded.tomcat.GracefulShutdown#shutDownGracefully : Commencing graceful shutdown. Waiting for active requests to complete
-2026-01-14 22:40:41.656 INFO  [TraceID: N/A | SpanID: N/A] [tomcat-shutdown] o.s.boot.web.embedded.tomcat.GracefulShutdown#doShutdown : Graceful shutdown complete
-2026-01-14 22:40:41.664 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] o.s.orm.jpa.LocalContainerEntityManagerFactoryBean#destroy : Closing JPA EntityManagerFactory for persistence unit 'default'
-2026-01-14 22:40:41.670 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource#close : HikariPool-1 - Shutdown initiated...
-2026-01-14 22:40:41.678 INFO  [TraceID: N/A | SpanID: N/A] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource#close : HikariPool-1 - Shutdown completed.
