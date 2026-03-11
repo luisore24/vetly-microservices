@@ -1,0 +1,57 @@
+server:
+  port: 5405
+
+spring:
+  application:
+    name: microservice-auth
+  datasource:
+    url: jdbc:postgresql://localhost:5433/authentication_vetly
+    username: postgres
+    password: root
+    drive-class-name: org.postgresql.Driver
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+
+  cloud:
+    inetutils:
+      preferred-networks:
+        - 127.0.0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5401/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0 #registra todas las peticiones
+    propagation:
+      type: w3c
+  endpoints:
+    web:
+      exposure:
+        include: "health,info"
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name}, TraceID: %X{traceId:-N/A}, SpanID: %X{spandId:-N/A}]"
+
+security:
+  jwt:
+    private:
+      key: "238ed1228bb925027ee91ba96b6625453e30605e837d61979599c00b26a0ef3155cafb8bdf8141599aa7b8f72065f164b14fedda4bfc724ca77b16427a5446ba"
+    user:
+      generator: "vetonlinegenerator"
+    token:
+      timelife: 10800000

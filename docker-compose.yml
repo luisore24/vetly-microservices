@@ -1,0 +1,47 @@
+services:
+  eureka-server:
+    build: ./microservice-eureka
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      JAVA_OPTS: "-Xmx256m -Xms128m"
+      SERVER_PORT: ${PORT}
+      EUREKA_INSTANCE_HOSTNAME: eureka-server
+      EUREKA_CLIENT_REGISTER_WITH_EUREKA: "false"
+      EUREKA_CLIENT_FETCH_REGISTRY: "false"
+
+  microservice-auth:
+    build: ./microservice-auth
+    depends_on:
+      - eureka-server
+    environment:
+      JAVA_OPTS: "-Xmx384m -Xms128m"
+      SERVER_PORT: ${PORT}
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:5401/eureka/
+      SPRING_DATASOURCE_URL: ${AUTH_DB_URL}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+
+  microservice-catalog:
+    build: ./microservice-catalog
+    depends_on:
+      - eureka-server
+    environment:
+      JAVA_OPTS: "-Xmx384m -Xms128m"
+      SERVER_PORT: ${PORT}
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:5401/eureka/
+      SPRING_DATASOURCE_URL: ${CATALOGO_DB_URL}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+
+  microservice-gateway:
+    build: ./microservice-gateway
+    ports:
+      - "${PORT}:${PORT}"
+    depends_on:
+      - eureka-server
+    environment:
+      JAVA_OPTS: "-Xmx256m -Xms128m"
+      SERVER_PORT: 5400
+      PORT: 5400
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:5401/eureka/

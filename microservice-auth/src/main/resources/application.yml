@@ -1,38 +1,42 @@
 server:
-  port: 5405
+  # Railway/Render asignará el puerto dinámicamente
+  port: ${PORT:5405}
 
 spring:
   application:
     name: microservice-auth
+
   datasource:
-    url: jdbc:postgresql://localhost:5433/authentication_vetly
-    username: postgres
-    password: root
-    drive-class-name: org.postgresql.Driver
+    # Prioriza las variables de entorno para producción
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/authentication_vetly}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
+    driver-class-name: org.postgresql.Driver
 
   jpa:
-    show-sql: true
+    hibernate:
+      # Asegura que se creen las tablas de usuarios/roles al iniciar en Neon
+      ddl-auto: none
+    show-sql: false
     properties:
       hibernate:
-        format_sql: true
-
-
-  cloud:
-    inetutils:
-      preferred-networks:
-        - 127.0.0
+        format_sql: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:5401/eureka
+      # Apuntamos al nombre del contenedor definido en docker-compose
+      defaultZone: ${EUREKA_URL:http://eureka-server:5401/eureka}
   instance:
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    instance-id: ${spring.application.name}:${random.uuid}
+    # Crucial para que el Gateway lo encuentre en la red de Railway/Docker
+    prefer-ip-address: true
 
 management:
   tracing:
     sampling:
-      probability: 1.0 #registra todas las peticiones
+      probability: 0 #registra todas las peticiones
     propagation:
       type: w3c
   endpoints:
@@ -54,4 +58,4 @@ security:
     user:
       generator: "vetonlinegenerator"
     token:
-      timelife: 600000
+      timelife: 10800000
