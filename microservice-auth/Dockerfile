@@ -1,8 +1,10 @@
+FROM maven:3.9.6-eclipse-temurin-21-alpine AS build
+WORKDIR /app
+COPY pom.xml .
+COPY microservice-auth ./microservice-auth
+RUN mvn clean package -DskipTests -pl microservice-auth -am
+
 FROM eclipse-temurin:21-jdk-alpine
-VOLUME /tmp
-
-# Usamos un comodín doble para que busque el jar dentro de cualquier carpeta target
-COPY microservice-auth/target/*.jar app.jar
-
-# Limitamos la memoria de la JVM (esto está perfecto para Railway)
-ENTRYPOINT ["java", "-Xmx300m", "-Xms128m", "-jar", "/app.jar"]
+WORKDIR /app
+COPY --from=build /app/microservice-auth/target/*.jar app.jar
+ENTRYPOINT ["java", "-Xmx300m", "-Xms128m", "-jar", "app.jar"]
