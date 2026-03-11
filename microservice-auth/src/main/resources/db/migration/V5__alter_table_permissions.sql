@@ -1,0 +1,2 @@
+ALTER TABLE permissions
+ADD COLUMN name VARCHAR(50) UNIQUE;

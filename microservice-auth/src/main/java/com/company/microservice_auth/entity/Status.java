@@ -1,16 +1,14 @@
 package com.company.microservice_auth.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "status")
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,13 +16,16 @@ public class Status {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "description", nullable = false)
     private String description;
 
     @Column(name = "comment")
     private String comment;
+
+    @Column(name = "is_allowed")
+    private Boolean isAllowed;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;

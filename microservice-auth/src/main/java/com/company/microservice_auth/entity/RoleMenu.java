@@ -4,6 +4,7 @@ package com.company.microservice_auth.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "roles_menus")
@@ -16,9 +17,9 @@ public class RoleMenu {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "role_id")
     private Role role;
 
@@ -43,15 +44,14 @@ public class RoleMenu {
     private String updatedBy;
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof RoleMenu)) return false;
-        RoleMenu other = (RoleMenu) o;
-        return id != null && id.equals(other.getId());
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof RoleMenu roleMenu)) return false;
+        return Objects.equals(role, roleMenu.role) && Objects.equals(menu, roleMenu.menu);
     }
 
     @Override
     public int hashCode() {
-        return 31;
+        return Objects.hash(role, menu);
     }
 }

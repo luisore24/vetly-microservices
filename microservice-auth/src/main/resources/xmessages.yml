@@ -1,0 +1,26 @@
+error:
+  logindefault:
+    message: "Username not found, try again"
+    statuscode: 404
+    error: "USER_NOT_FOUND"
+  badcredential:
+    message: "Password incorrect, try again"
+    statuscode: 401
+    error: "BAD_CREDENTIAL"
+  accountlocked:
+    message: "Sorry, your account is locked. Please contact with administrator"
+    statuscode: 423
+    error: "ACCOUNT_LOCKED"
+  accountexpired:
+    message: "Sorry, your account is expired. Please contact with administrator"
+    statuscode: 419
+    error: "ACCOUNT_EXPIRED"
+  credentialexpired:
+    message: "Sorry, your credential is expired. Please contact with administrator"
+    statuscode: 419
+    error: "CREDENTIAL_EXPIRED"
+  accountdisable:
+    message: "Sorry, your account is disable. Please contact with administrator"
+    statuscode: 419
+    error: "ACCOUNT_DISABLE"
+

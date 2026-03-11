@@ -1,0 +1,36 @@
+server:
+  # En Railway/Render el puerto es dinámico
+  port: ${PORT:5406}
+
+spring:
+  application:
+    name: microservice-catalog
+
+  datasource:
+    # Usamos variables de entorno para que sea seguro y flexible
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/catalog_vetly}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        # Dialecto específico para PostgreSQL (Neon)
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+eureka:
+  client:
+    service-url:
+      # Apuntamos al nombre del servicio en el docker-compose
+      defaultZone: ${EUREKA_URL:http://eureka-server:5401/eureka}
+  instance:
+    # Genera un ID único para evitar conflictos en Eureka
+    instance-id: ${spring.application.name}:${random.uuid}
+    # Recomendado para despliegues en contenedores
+    prefer-ip-address: true
+

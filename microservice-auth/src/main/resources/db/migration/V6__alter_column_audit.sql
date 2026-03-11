@@ -1,0 +1,2 @@
+ALTER TABLE audit_login
+ALTER COLUMN user_agent TYPE VARCHAR(250);

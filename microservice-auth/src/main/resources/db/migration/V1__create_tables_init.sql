@@ -12,16 +12,15 @@ CREATE TABLE "users" (
   "account_no_expired" boolean DEFAULT true,
   "account_no_locked" boolean DEFAULT true,
   "credential_no_expired" boolean DEFAULT true,
-  "last_login" timestamp,
-  "last_login_ip" varchar(50),
   "created_at" timestamp NOT NULL,
   "created_by" varchar(50) NOT NULL,
   "updated_at" timestamp NOT NULL,
-  "updated_by" varchar(50) NOT NULL
+  "updated_by" varchar(50) NOT NULL,
+  "is_deleted" boolean DEFAULT false
 );
 
 CREATE TABLE "roles" (
-  "id" serial PRIMARY KEY,
+  "id" bigserial PRIMARY KEY,
   "description" varchar(20) UNIQUE NOT NULL,
   "comment" varchar(100),
   "status_id" integer DEFAULT '1',
@@ -32,7 +31,7 @@ CREATE TABLE "roles" (
 );
 
 CREATE TABLE "permissions" (
-  "id" serial PRIMARY KEY,
+  "id" bigserial PRIMARY KEY,
   "description" varchar(20) UNIQUE NOT NULL,
   "comment" varchar(100),
   "status_id" integer DEFAULT '1',
@@ -43,7 +42,7 @@ CREATE TABLE "permissions" (
 );
 
 CREATE TABLE "roles_permissions" (
-  "id" serial PRIMARY KEY,
+  "id" bigserial PRIMARY KEY,
   "role_id" integer,
   "permission_id" integer,
   "status_id" integer DEFAULT '1',
@@ -54,7 +53,7 @@ CREATE TABLE "roles_permissions" (
 );
 
 CREATE TABLE "menus" (
-  "id" serial PRIMARY KEY,
+  "id" bigserial PRIMARY KEY,
   "description" varchar(20) UNIQUE NOT NULL,
   "comment" varchar(100),
   "status_id" integer DEFAULT '1',
@@ -67,7 +66,7 @@ CREATE TABLE "menus" (
 );
 
 CREATE TABLE "users_roles" (
-  "id" serial PRIMARY KEY,
+  "id" bigserial PRIMARY KEY,
   "user_id" integer,
   "role_id" integer,
   "status_id" integer DEFAULT '1',
@@ -78,7 +77,7 @@ CREATE TABLE "users_roles" (
 );
 
 CREATE TABLE "roles_menus" (
-  "id" serial PRIMARY KEY,
+  "id" bigserial PRIMARY KEY,
   "role_id" integer,
   "menu_id" integer,
   "status_id" integer DEFAULT '1',
@@ -89,9 +88,10 @@ CREATE TABLE "roles_menus" (
 );
 
 CREATE TABLE "status" (
-  "id" serial PRIMARY KEY,
+  "id" bigserial PRIMARY KEY,
   "description" varchar(20) UNIQUE NOT NULL,
   "comment" varchar(100),
+  "is_allowed" boolean DEFAULT false,
   "created_at" timestamp NOT NULL,
   "created_by" varchar(255) NOT NULL,
   "updated_at" timestamp NOT NULL,
@@ -100,9 +100,8 @@ CREATE TABLE "status" (
 
 CREATE TABLE "audit_login" (
   "id" UUID PRIMARY KEY,
-  "user_id" bigserial,
   "username" varchar(50) NOT NULL,
-  "comment" varchar(100),
+  "message" varchar(255),
   "user_agent" varchar(100),
   "ip_address" varchar(50),
   "created_at" timestamp NOT NULL,
@@ -123,5 +122,3 @@ ALTER TABLE "roles_permissions" ADD FOREIGN KEY ("role_id") REFERENCES "roles" (
 ALTER TABLE "roles_permissions" ADD FOREIGN KEY ("permission_id") REFERENCES "permissions" ("id");
 
 ALTER TABLE "users" ADD FOREIGN KEY ("status_id") REFERENCES "status" ("id");
-
-ALTER TABLE "audit_login" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");

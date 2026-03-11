@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users_roles")
@@ -16,7 +17,7 @@ public class UserRole {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -42,17 +43,16 @@ public class UserRole {
     @Column(name = "updated_by")
     private String updatedBy;
 
+
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UserRole)) return false;
-        UserRole other = (UserRole) o;
-        return id != null && id.equals(other.getId());
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof UserRole userRole)) return false;
+        return Objects.equals(user, userRole.user) && Objects.equals(role, userRole.role);
     }
 
     @Override
     public int hashCode() {
-        return 31;
+        return Objects.hash(user, role);
     }
-
 }

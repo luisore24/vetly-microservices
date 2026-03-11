@@ -1,0 +1,22 @@
+server:
+  port: 5401
+
+spring:
+  application:
+    name: eureka-server
+
+eureka:
+  instance:
+    # 1. IMPORTANTE: El hostname debe coincidir con el nombre del servicio en el docker-compose
+    hostname: eureka-server
+    # 2. En la nube/Docker, es mejor usar la IP interna para evitar problemas de resolución de nombres
+    prefer-ip-address: true
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      # 3. Usamos el hostname definido arriba
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    # 4. Evita que Eureka elimine servicios si hay problemas de red momentáneos (común en capas gratuitas)
+    enable-self-preservation: false

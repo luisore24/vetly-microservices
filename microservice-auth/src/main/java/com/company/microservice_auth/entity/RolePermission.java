@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "roles_permissions")
@@ -17,7 +18,7 @@ public class RolePermission {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "role_id")
@@ -44,16 +45,14 @@ public class RolePermission {
     private String updatedBy;
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof RolePermission)) return false;
-        RolePermission other = (RolePermission) o;
-        return id != null && id.equals(other.getId());
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (!(object instanceof RolePermission that)) return false;
+        return Objects.equals(role, that.role) && Objects.equals(permission, that.permission);
     }
 
     @Override
     public int hashCode() {
-        return 31;
+        return Objects.hash(role, permission);
     }
-
 }

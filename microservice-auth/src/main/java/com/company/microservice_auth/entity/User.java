@@ -14,7 +14,6 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class User {
 
     @Id
@@ -36,7 +35,7 @@ public class User {
     @Column(name = "lastname", nullable = false)
     private String lastname;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
 
     @Column(name = "phone")
@@ -50,22 +49,16 @@ public class User {
     private Status status;
 
     @Column(name = "is_enabled", nullable = false)
-    private boolean isEnabled;
+    private Boolean isEnabled;
 
     @Column(name = "account_no_expired", nullable = false)
-    private boolean accountNoExpired;
+    private Boolean accountNoExpired;
 
     @Column(name = "account_no_locked", nullable = false)
-    private boolean accountNoLocked;
+    private Boolean accountNoLocked;
 
     @Column(name = "credential_no_expired", nullable = false)
-    private boolean credentialNoExpired;
-
-    @Column(name = "last_login", nullable = false)
-    private LocalDateTime lastLogin;
-
-    @Column(name = "last_login_ip", nullable = false)
-    private String lastLoginIp;
+    private Boolean credentialNoExpired;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
@@ -78,6 +71,9 @@ public class User {
 
     @Column(name = "updated_by", nullable = false)
     private String updatedBy;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
 
     @Override
     public boolean equals(Object o) {
@@ -92,4 +88,27 @@ public class User {
         return 31;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", roles=" + roles +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", status=" + status +
+                ", isEnabled=" + isEnabled +
+                ", accountNoExpired=" + accountNoExpired +
+                ", accountNoLocked=" + accountNoLocked +
+                ", credentialNoExpired=" + credentialNoExpired +
+                ", createdAt=" + createdAt +
+                ", createdBy='" + createdBy + '\'' +
+                ", updatedAt=" + updatedAt +
+                ", updatedBy='" + updatedBy + '\'' +
+                ", isDeleted=" + isDeleted +
+                '}';
+    }
 }

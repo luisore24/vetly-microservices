@@ -1,23 +1,61 @@
 server:
-  port: 5405
+  # Railway/Render asignará el puerto dinámicamente
+  port: ${PORT:5405}
 
 spring:
   application:
     name: microservice-auth
+
   datasource:
-    url: jdbc:postgresql://localhost:5433/authentication_vetly
-    username: postgres
-    password: root
-    drive-class-name: org.postgresql.Driver
+    # Prioriza las variables de entorno para producción
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/authentication_vetly}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
+    driver-class-name: org.postgresql.Driver
 
   jpa:
-    show-sql: true
+    hibernate:
+      # Asegura que se creen las tablas de usuarios/roles al iniciar en Neon
+      ddl-auto: none
+    show-sql: false
     properties:
       hibernate:
-        format_sql: true
+        format_sql: false
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
-  eureka:
-    instance:
-      hostname: localhost
-    client:
-      defaultZone: http://localhost:5401
+eureka:
+  client:
+    service-url:
+      # Apuntamos al nombre del contenedor definido en docker-compose
+      defaultZone: ${EUREKA_URL:http://eureka-server:5401/eureka}
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+    # Crucial para que el Gateway lo encuentre en la red de Railway/Docker
+    prefer-ip-address: true
+
+management:
+  tracing:
+    sampling:
+      probability: 0 #registra todas las peticiones
+    propagation:
+      type: w3c
+  endpoints:
+    web:
+      exposure:
+        include: "health,info"
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  pattern:
+    level: "%5p [${spring.application.name}, TraceID: %X{traceId:-N/A}, SpanID: %X{spandId:-N/A}]"
+
+security:
+  jwt:
+    private:
+      key: "238ed1228bb925027ee91ba96b6625453e30605e837d61979599c00b26a0ef3155cafb8bdf8141599aa7b8f72065f164b14fedda4bfc724ca77b16427a5446ba"
+    user:
+      generator: "vetonlinegenerator"
+    token:
+      timelife: 10800000

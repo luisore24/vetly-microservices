@@ -17,10 +17,13 @@ public class Permission {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @OneToMany(mappedBy = "permission", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<RolePermission> rolePermissions;
+
+    @Column(name = "name", nullable = false, unique = true)
+    private String name;
 
     @Column(name = "description", nullable = false)
     private String description;
