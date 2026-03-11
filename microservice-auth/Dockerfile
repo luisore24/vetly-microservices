@@ -2,9 +2,9 @@
 FROM maven:3.9.6-eclipse-temurin-21-alpine AS build
 WORKDIR /app
 
-COPY . .
+COPY ../../ .
 
-RUN mvn clean install -DskipTests
+RUN mvn install -DskipTests
 RUN mvn clean package -DskipTests -pl microservice-auth -am
 
 # ---------- RUNTIME ----------
