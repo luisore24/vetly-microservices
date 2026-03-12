@@ -1,5 +1,6 @@
 server:
-  port: 5400
+  # Railway inyectará la variable PORT. Si no existe, usa 5400.
+  port: ${PORT:5400}
 
 spring:
   application:
@@ -7,41 +8,20 @@ spring:
   cloud:
     gateway:
       server:
-        webflux:
+        webflux: # Asegúrate de que esto envuelva a routes y globalcors
           routes:
-            - id: microservice-auth
+            - id: auth-route
               uri: lb://microservice-auth
               predicates:
                 - Path=/api/v1/auth/**
-            - id: microservice-auth
+            - id: users-route
               uri: lb://microservice-auth
               predicates:
                 - Path=/api/v1/users/**
-            - id: microservice-catalog
+            - id: catalog-route
               uri: lb://microservice-catalog
               predicates:
-                - Path=/api/v1/catalog/**
-            - id: microservice-catalog
-              uri: lb://microservice-catalog
-              predicates:
-                - Path=/api/v1/product/**
-            - id: microservice-catalog
-              uri: lb://microservice-catalog
-              predicates:
-                - Path=/api/v1/service/**
-            - id: microservice-catalog
-              uri: lb://microservice-catalog
-              predicates:
-                - Path=/api/v1/category/**
-            - id: microservice-catalog
-              uri: lb://microservice-catalog
-              predicates:
-                - Path=/api/v1/itemtype/**
-
-          discovery:
-            locator:
-              enabled: true
-              lower-case-service-id: true
+                - Path=/api/v1/catalog/**, /api/v1/product/**, /api/v1/service/**, /api/v1/category/**, /api/v1/itemtype/**
 
           globalcors:
             add-to-simple-url-handler-mapping: true
@@ -49,31 +29,26 @@ spring:
               '[/**]':
                 allowedOrigins:
                   - "http://localhost:5173"
-                allowedMethods:
-                  - GET
-                  - POST
-                  - PUT
-                  - DELETE
-                  - OPTIONS
-                allowedHeaders:
-                  - Authorization
-                  - Content-Type
-                  - "*"
+                  - "*" # ¡Añade esto para el despliegue!
+                allowedMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"]
+                allowedHeaders: ["Authorization", "Content-Type", "*"]
                 maxAge: 3600
 
-  loadbalancer:
-    ribbon:
-      enabled: false
-  inetutils:
-    preferred-networks:
-      - 127.0.0
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
 
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:5401/eureka
+      # Cambiamos localhost por el nombre del servicio definido en docker-compose
+      defaultZone: ${EUREKA_URL:http://eureka-server:5401/eureka}
   instance:
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    # Importante para que no choquen instancias en el despliegue
+    instance-id: ${spring.application.name}:${random.uuid}
+    # En la nube, es mejor que Eureka se comunique por IP interna
+    prefer-ip-address: true
 
 security:
   jwt:

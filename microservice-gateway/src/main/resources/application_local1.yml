@@ -1,0 +1,102 @@
+server:
+  port: 5400
+
+spring:
+  application:
+    name: microservice-gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: microservice-auth
+              uri: lb://microservice-auth
+              predicates:
+                - Path=/api/v1/auth/**
+            - id: microservice-auth
+              uri: lb://microservice-auth
+              predicates:
+                - Path=/api/v1/users/**
+            - id: microservice-catalog
+              uri: lb://microservice-catalog
+              predicates:
+                - Path=/api/v1/catalog/**
+            - id: microservice-catalog
+              uri: lb://microservice-catalog
+              predicates:
+                - Path=/api/v1/product/**
+            - id: microservice-catalog
+              uri: lb://microservice-catalog
+              predicates:
+                - Path=/api/v1/service/**
+            - id: microservice-catalog
+              uri: lb://microservice-catalog
+              predicates:
+                - Path=/api/v1/category/**
+            - id: microservice-catalog
+              uri: lb://microservice-catalog
+              predicates:
+                - Path=/api/v1/itemtype/**
+
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+
+          globalcors:
+            add-to-simple-url-handler-mapping: true
+            cors-configurations:
+              '[/**]':
+                allowedOrigins:
+                  - "http://localhost:5173"
+                allowedMethods:
+                  - GET
+                  - POST
+                  - PUT
+                  - DELETE
+                  - OPTIONS
+                allowedHeaders:
+                  - Authorization
+                  - Content-Type
+                  - "*"
+                maxAge: 3600
+
+  loadbalancer:
+    ribbon:
+      enabled: false
+  inetutils:
+    preferred-networks:
+      - 127.0.0
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5401/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+security:
+  jwt:
+    private:
+      key: "238ed1228bb925027ee91ba96b6625453e30605e837d61979599c00b26a0ef3155cafb8bdf8141599aa7b8f72065f164b14fedda4bfc724ca77b16427a5446ba"
+    user:
+      generator: "vetonlinegenerator"
+    token:
+      timelife: 600000
+  public-paths:
+    - /api/v1/auth/login
+    - /actuator/**
+
+management:
+  tracing:
+    enabled: true
+    sampling:
+      probability: 1.0
+    propagation:
+      type: w3c
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    com.netflix.discovery: DEBUG
+    com.netflix.discovery.DiscoveryClient: DEBUG
