@@ -1,19 +1,18 @@
 server:
-  port: 5401
+  port: ${PORT:5401}
 
 spring:
   application:
     name: eureka-server
-  #config:
-  #  import: optional:configserver:http://localhost:8888
-
 
 eureka:
   instance:
-    hostname: localhost
+    # Usamos la variable de Railway o caemos en localhost para desarrollo local
+    hostname: ${RAILWAY_PUBLIC_DOMAIN:localhost}
     prefer-ip-address: false
   client:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      # Si estamos en Railway, usamos la URL pública; si no, localhost
+      defaultZone: ${EUREKA_URL:http://localhost:5401/eureka/}
